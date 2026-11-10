@@ -1,0 +1,1322 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Martín Gala / Galaxet</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Martín Gala / Galaxet, DJ de València. Techno, groove y house en vinilo; psytrance, tekno y psytek. Booking con BTZ Agency.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=BenchNine:wght@300;400;700&family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: club-night landing (NOCTRA style) — full-bleed video hero, numbered sections, sticky stacked poster cards, accordion photo strip, ticket footer */
+:root{
+  color-scheme:dark;
+  --bg:#080808; --ink:#111111; --panel:#242424; --line:rgba(242,241,237,.12);
+  --fg:#f2f1ed; --fg-80:rgba(255,255,255,.8); --dim:rgba(255,255,255,.5); --mute:#8a8a8a;
+  --lime:#ff7a2e; --acc-rgb:255,122,46; --btn:#d9d9d6;
+  --display:"Bebas Neue",Impact,"Arial Narrow",sans-serif;
+  --body:"BenchNine","Arial Narrow",sans-serif;
+  --ui:"Inter",system-ui,sans-serif;
+  --ease:cubic-bezier(.44,0,.56,1);
+  --gx:max(28px,env(safe-area-inset-left,0px)); --gxr:max(28px,env(safe-area-inset-right,0px));
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px;overflow-x:clip}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:21px;line-height:1.4;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--lime);outline-offset:3px}
+.wrap{padding-left:var(--gx);padding-right:var(--gxr)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+
+/* type */
+.h-xl{font-family:var(--display);font-weight:400;font-size:clamp(64px,10.2vw,130px);line-height:.8;letter-spacing:-.01em;text-transform:uppercase;text-wrap:balance}
+.dot{display:inline-block;width:.12em;height:.12em;background:var(--lime);margin-left:.03em;vertical-align:baseline}
+.eyebrow{font-family:var(--body);font-size:20px;line-height:1.1;display:flex;gap:8px;margin-bottom:6px}
+.eyebrow b{color:var(--lime);font-weight:400}
+.lede{font-family:var(--body);font-weight:300;font-size:clamp(22px,2.3vw,30px);letter-spacing:.08em;line-height:.95;color:var(--fg-80);max-width:24ch}
+.lime{color:var(--lime)}
+.ui-label{font-family:var(--display);font-size:17px;letter-spacing:.29em;text-transform:uppercase}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:space-between;gap:28px;height:38px;padding:0 10px 0 28px;font-family:var(--display);font-size:18px;letter-spacing:.08em;text-transform:uppercase;color:var(--bg);background:var(--lime);transition:background .3s var(--ease)}
+.btn .ar{width:22px;height:22px;border-radius:50%;background:var(--fg);display:grid;place-items:center;transition:transform .4s var(--ease)}
+.btn .ar svg{width:12px;height:12px;stroke:var(--bg)}
+.btn:hover .ar{transform:translateX(4px)}
+.btn-gray{background:var(--btn)}
+.btn-gray .ar{background:var(--bg)} .btn-gray .ar svg{stroke:var(--fg)}
+
+/* nav */
+.nav{position:fixed;z-index:50;inset:env(safe-area-inset-top,0px) 0 auto 0;height:64px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px));background:linear-gradient(180deg,rgba(8,8,8,.85),rgba(8,8,8,.45));backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.logo{font-family:var(--ui);font-weight:300;font-size:22px;letter-spacing:.42em;text-transform:uppercase;white-space:nowrap}
+.links{display:flex;gap:clamp(18px,3vw,44px)}
+.links a{transition:color .2s;white-space:nowrap}
+@media (max-width:1360px){.links{display:none}.burger{display:block}}
+.links a:hover{color:var(--lime)}
+.nav-r{display:flex;align-items:center;gap:14px}
+.sound{display:flex;align-items:center;gap:12px;height:42px;padding:0 14px;border:1px solid var(--line);background:rgba(8,8,8,.7);border-radius:6px;font-family:var(--ui);font-weight:700;font-size:12px;letter-spacing:.06em}
+.sound .led{width:6px;height:6px;border-radius:50%;background:var(--mute);transition:background .3s}
+.sound.on .led{background:var(--lime);box-shadow:0 0 10px var(--lime)}
+.eq{display:flex;align-items:center;gap:2px;height:12px}
+.eq i{width:2px;height:4px;background:var(--lime);border-radius:1px}
+.sound.on .eq i{animation:eq .9s ease-in-out infinite}
+.eq i:nth-child(2){animation-delay:-.3s!important}.eq i:nth-child(3){animation-delay:-.6s!important}.eq i:nth-child(4){animation-delay:-.15s!important}
+@keyframes eq{0%,100%{height:3px}50%{height:12px}}
+.sound .sep{width:1px;height:18px;background:var(--line)}
+.sound .lbl{white-space:nowrap}
+.sound .time{color:var(--mute);font-weight:500;font-variant-numeric:tabular-nums}
+.burger{display:none;width:42px;height:42px;border:1px solid var(--line);border-radius:6px}
+.burger span{display:block;width:16px;height:1.5px;background:var(--fg);margin:4px auto;transition:transform .3s var(--ease)}
+.menu{position:fixed;z-index:49;inset:calc(64px + env(safe-area-inset-top,0px)) 0 0 0;background:var(--bg);padding:28px var(--gxr) 28px var(--gx);display:flex;flex-direction:column;gap:4px;opacity:0;pointer-events:none;transform:translateY(-10px);transition:.35s var(--ease)}
+.menu a.big{font-family:var(--display);font-size:56px;line-height:1;border-bottom:1px solid var(--line);padding:10px 0}
+.menu-open .menu{opacity:1;pointer-events:auto;transform:none}
+.menu-open .burger span:first-child{transform:translateY(2.75px) rotate(45deg)}
+.menu-open .burger span:last-child{transform:translateY(-2.75px) rotate(-45deg)}
+
+/* hero */
+.hero{position:relative;min-height:min(100svh,980px);display:flex;flex-direction:column;justify-content:space-between;padding-top:96px;overflow:hidden;isolation:isolate}
+.hero-vid{position:absolute;inset:0;z-index:-2}
+.hero-vid video{width:100%;height:100%;object-fit:cover;animation:zoomIn 2.2s var(--ease) both}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(8,8,8,.8) 0%,rgba(8,8,8,.3) 38%,rgba(8,8,8,.3) 62%,rgba(8,8,8,.95) 100%)}
+@keyframes zoomIn{from{transform:scale(1.12);opacity:0}to{transform:none;opacity:1}}
+.hero h1{font-family:var(--display);font-weight:400;font-size:clamp(96px,21vw,300px);line-height:.78;letter-spacing:-.01em;display:flex;flex-direction:column}
+.hero h1 .row{display:flex;overflow:hidden;padding-top:.06em}
+.hero h1 .ch{display:inline-block;transform:translateY(105%);animation:up 1s var(--ease) forwards;animation-delay:calc(.35s + var(--i)*60ms)}
+.hero h1 .row:last-child{color:var(--lime)}
+@keyframes up{to{transform:none}}
+.hero-sub{display:flex;align-items:center;gap:14px;margin-top:18px;opacity:0;animation:fadeUp 1s var(--ease) 1.1s forwards}
+.tag{font-family:var(--display);font-size:18px;letter-spacing:.08em;background:var(--lime);color:var(--bg);padding:5px 10px 3px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:none}}
+.hero-foot{display:grid;grid-template-columns:1fr auto;align-items:end;gap:24px;padding-bottom:22px;opacity:0;animation:fadeUp 1s var(--ease) 1.3s forwards}
+.listen{display:flex;align-items:center;gap:18px}
+.wave{width:min(340px,48vw);height:34px}
+.wave path{fill:none;stroke:var(--lime);stroke-width:1.5}
+.listen small{display:block;color:var(--fg-80);font-size:16px;margin-bottom:4px}
+.playbtn{width:52px;height:52px;border-radius:50%;border:1.5px solid var(--lime);display:grid;place-items:center;flex:none;transition:background .3s}
+.playbtn svg{width:16px;height:16px;fill:var(--lime)}
+.playbtn:hover{background:rgba(var(--acc-rgb),.12)}
+.next{font-family:var(--display);color:var(--lime);font-size:clamp(20px,2vw,26px);line-height:1.02;text-align:right;letter-spacing:.02em}
+.next small{display:block;font-size:15px;color:var(--fg-80);letter-spacing:.2em;margin-bottom:6px}
+
+/* marquee */
+.marq{overflow:hidden;background:var(--bg);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0 8px}
+.marq .trk{display:flex;width:max-content;animation:mq 28s linear infinite}
+.marq span{font-family:var(--ui);font-weight:700;font-size:clamp(22px,2.6vw,36px);letter-spacing:-.01em;text-transform:uppercase;white-space:nowrap;padding:0 22px;display:flex;align-items:center;gap:22px}
+.marq span::before{content:"*";color:var(--lime)}
+.marq span:nth-child(3n+2){color:var(--lime)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* sections */
+section{position:relative}
+.sec{padding-top:clamp(44px,5vw,76px);padding-bottom:clamp(16px,2vw,32px)}
+.head{display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:end;margin-bottom:clamp(24px,3vw,44px)}
+.head .side{display:flex;flex-direction:column;align-items:flex-start;gap:22px;padding-bottom:10px}
+[data-reveal]{transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.js [data-reveal].pre{opacity:.001;transform:translateY(50px)}
+
+/* 01 manifesto */
+.manifesto{display:grid;grid-template-columns:1.15fr 1fr .85fr;gap:clamp(20px,3vw,44px);align-items:start}
+.manifesto .lede{margin-top:clamp(0px,4vw,60px)}
+.portrait{position:relative;aspect-ratio:4/5;overflow:hidden;max-width:100%}
+.portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;filter:grayscale(1) contrast(1.15) brightness(.9)}
+.portrait::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(var(--acc-rgb),.0) 30%,rgba(var(--acc-rgb),.35));mix-blend-mode:multiply}
+.portrait::before{content:"";position:absolute;right:16%;top:0;bottom:0;width:3px;background:var(--lime);box-shadow:0 0 30px 6px rgba(var(--acc-rgb),.55);z-index:1;opacity:.85}
+.sig{display:flex;justify-content:space-between;align-items:end;margin-top:28px;gap:20px;flex-wrap:wrap}
+.sig .mini{font-family:var(--display);font-size:20px;letter-spacing:.04em}
+.type{font-family:var(--display);color:var(--lime);font-size:20px;letter-spacing:.06em;line-height:1.05;text-align:right}
+
+/* 02 reels */
+.reels{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:stretch}
+.reel{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--ink);border:1px solid var(--line)}
+.reel video{width:100%;height:100%;object-fit:cover}
+.reel .cap{position:absolute;left:0;right:0;bottom:0;padding:18px;display:flex;justify-content:space-between;align-items:end;background:linear-gradient(0deg,rgba(8,8,8,.9),transparent)}
+.reel h3{font-family:var(--display);font-weight:400;font-size:40px;line-height:.9}
+.reel .ui-label{color:var(--lime);font-size:14px}
+.mute{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--lime);display:grid;place-items:center;background:rgba(8,8,8,.5)}
+.mute svg{width:18px;height:18px;stroke:var(--lime);fill:none;stroke-width:1.8}
+.mute .on{display:none}.reel.loud .mute .on{display:block}.reel.loud .mute .off{display:none}
+.reel-note{border:1px solid var(--line);background:var(--ink);padding:28px;margin-top:14px;display:grid;grid-template-columns:1fr 1.4fr auto;align-items:center;gap:32px}
+.reel-note p{color:var(--dim);font-size:21px;max-width:28ch}
+.specs{display:grid;grid-template-columns:auto 1fr;border-top:1px solid var(--line)}
+.specs dt,.specs dd{padding:12px 0;border-bottom:1px solid var(--line)}
+.specs dt{font-size:16px;color:var(--mute);padding-right:20px}
+.specs dd{font-family:var(--display);font-size:26px;line-height:1;text-align:right}
+
+/* 03 posters (sticky stack) */
+.stack{display:flex;flex-direction:column;gap:0;padding-bottom:40px}
+.pcard{position:sticky;top:calc(80px + var(--n)*50px);height:min(78vh,640px);min-height:440px;overflow:hidden;border:1px solid var(--line);background:var(--ink);display:grid;grid-template-columns:1fr auto;margin-bottom:24px;box-shadow:0 -20px 40px rgba(0,0,0,.6)}
+.pcard .bgblur{display:none}
+.pcard .info{position:relative;padding:22px 26px 26px;display:flex;flex-direction:column;justify-content:flex-start;gap:clamp(20px,8vh,90px)}
+.chip{align-self:flex-start;font-family:var(--display);font-size:18px;letter-spacing:.08em;color:var(--lime);background:rgba(8,8,8,.75);padding:6px 10px 4px}
+.pcard h3{font-family:var(--display);font-weight:400;font-size:clamp(48px,6vw,84px);line-height:.85}
+.pcard .meta{font-family:var(--display);font-size:22px;letter-spacing:.04em;line-height:1.15;color:var(--fg-80);margin:10px 0 18px}
+.pcard p{color:var(--fg-80);max-width:34ch;margin-bottom:22px}
+.pcard .poster{position:relative;height:100%;padding:22px 22px 22px 0;display:flex}
+.pcard .poster button{display:block;height:100%;aspect-ratio:4/5;max-width:46vw;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.pcard .poster img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.pcard .poster button:hover img{transform:scale(1.04)}
+
+/* 04 awards */
+.awards{display:grid;grid-template-columns:1.05fr .95fr .8fr;gap:14px;align-items:stretch}
+.aw{position:relative;overflow:hidden;border:1px solid var(--line);background:var(--ink)}
+.aw img,.aw video{width:100%;height:100%;object-fit:cover}
+.aw.tall{min-height:520px}
+.aw.tall > button{position:absolute;inset:0}
+.aw .cap{position:absolute;left:14px;bottom:14px;right:14px;display:flex;justify-content:space-between;align-items:end;gap:10px}
+.aw .num{font-family:var(--display);font-size:20px;color:var(--lime);background:rgba(8,8,8,.75);padding:6px 10px 4px;letter-spacing:.06em}
+.award-card{display:flex;flex-direction:column;gap:14px}
+.award-txt{border:1px solid var(--line);background:var(--ink);padding:26px;flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:26px}
+.award-txt .big{font-family:var(--display);font-size:clamp(44px,4.4vw,64px);line-height:.88}
+.award-txt p{color:var(--dim)}
+.award-txt .ui-label{color:var(--lime);font-size:15px}
+.aw.vid{aspect-ratio:9/12}
+
+/* 01 bio */
+.bio p{color:var(--fg-80);font-weight:300;font-size:21px;line-height:1.32;letter-spacing:.03em;max-width:40ch;margin-top:16px}
+.bio .lede{color:var(--fg);margin-top:0;max-width:26ch}
+.bio .seal{border-left:2px solid var(--lime);padding-left:14px;color:var(--fg)}
+.bio .seal span{display:block;font-family:var(--display);color:var(--lime);font-size:18px;letter-spacing:.14em;margin-bottom:4px}
+
+/* 03 coverflow */
+.cf{position:relative;display:grid;grid-template-columns:1.35fr 1fr;gap:clamp(20px,4vw,60px);align-items:center;padding:0}
+.cf-ghost{position:absolute;left:calc(-1*var(--gx));right:calc(-1*var(--gxr));top:50%;transform:translateY(-50%);display:flex;width:max-content;animation:mq 50s linear infinite;pointer-events:none;z-index:0}
+.cf-ghost span{font-family:var(--display);font-size:clamp(120px,16vw,240px);line-height:1;color:transparent;-webkit-text-stroke:1px rgba(242,241,237,.08);white-space:nowrap}
+.cf-stage{position:relative;z-index:1;height:clamp(420px,42vw,560px);perspective:1400px;touch-action:pan-y;user-select:none;-webkit-user-select:none;outline:none;cursor:grab}
+.cf-stage:active{cursor:grabbing}
+.cf-card{position:absolute;left:50%;top:50%;width:min(380px,58%);aspect-ratio:4/5;margin:0;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.22,1,.36,1),opacity .9s,filter .9s;box-shadow:0 40px 90px rgba(0,0,0,.65);will-change:transform}
+.cf-card img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.cf-card .glare{position:absolute;inset:0;background:radial-gradient(circle at var(--gx2,50%) var(--gy2,30%),rgba(255,255,255,.28),transparent 45%);mix-blend-mode:overlay;opacity:0;transition:opacity .4s;pointer-events:none}
+.cf-card.on .glare{opacity:1}
+.cf-card.on{outline:1px solid rgba(var(--acc-rgb),.45)}
+.cf-stage.drag .cf-card{transition:none}
+.cf-info{position:relative;z-index:1;display:flex;flex-direction:column;gap:22px;align-items:flex-start}
+.cf-txt{transition:opacity .35s var(--ease),transform .35s var(--ease)}
+.cf-txt.swap{opacity:0;transform:translateY(14px)}
+.cf-txt h3{font-family:var(--display);font-weight:400;font-size:clamp(52px,6vw,88px);line-height:.85;margin-top:14px}
+.cf-txt .meta{font-family:var(--display);font-size:22px;letter-spacing:.04em;line-height:1.15;color:var(--lime);margin:12px 0 14px}
+.cf-txt p{color:var(--fg-80);max-width:32ch}
+.cf-ctrl,.deck-ctrl{display:flex;align-items:center;gap:14px}
+.cf-btn{width:48px;height:48px;border:1px solid var(--line);display:grid;place-items:center;background:var(--ink);transition:background .25s,border-color .25s}
+.cf-btn svg{width:16px;height:16px;stroke:var(--fg)}
+.cf-btn:hover{background:var(--lime);border-color:var(--lime)} .cf-btn:hover svg{stroke:var(--bg)}
+.cf-bar{width:140px;height:2px;background:var(--line);position:relative;overflow:hidden}
+.cf-bar i{position:absolute;inset:0 auto 0 0;width:33.3%;background:var(--lime);transition:width .6s var(--ease)}
+
+/* 05 deck */
+.daywrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,80px);align-items:center}
+.day-txt .lede{margin-top:20px;max-width:30ch}
+.deck-ctrl{margin-top:34px}
+.dk-count{font-family:var(--display);font-size:26px;letter-spacing:.06em;min-width:76px;text-align:center}
+.dk-count b{color:var(--lime);font-weight:400}
+.swipe-hint{margin-top:16px;color:var(--mute);font-size:18px;display:flex;gap:10px;align-items:center}
+.swipe-hint span{color:var(--lime);display:inline-block;animation:nudge 1.6s ease-in-out infinite}
+.swipe-hint span:last-child{animation-direction:reverse}
+@keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(-6px)}}
+.deck{position:relative;width:min(440px,100%);aspect-ratio:3/4;justify-self:center;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.dk{position:absolute;inset:0;margin:0;overflow:hidden;border:1px solid var(--line);background:var(--ink);box-shadow:0 30px 70px rgba(0,0,0,.6);transition:transform .6s cubic-bezier(.22,1,.36,1),opacity .4s;cursor:grab;will-change:transform}
+.dk.reel{aspect-ratio:auto}
+.dk img,.dk video{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.dk .cap{position:absolute;left:14px;right:14px;bottom:14px;display:flex;justify-content:space-between;align-items:end}
+.dk.reel .cap{left:0;right:0;bottom:0;padding:18px}
+.dk .num{font-family:var(--display);font-size:20px;color:var(--lime);background:rgba(8,8,8,.75);padding:6px 10px 4px;letter-spacing:.06em}
+.deck.drag .dk.top{transition:none;cursor:grabbing}
+
+/* 02 reels: expanding + tilt (desktop), swipe carousel (phone) */
+.reels{display:flex;gap:14px;height:min(72vh,660px);perspective:1200px}
+.reels .reel{flex:1;aspect-ratio:auto;height:100%;transition:flex .8s cubic-bezier(.22,1,.36,1),filter .6s,transform .5s cubic-bezier(.22,1,.36,1);transform-style:preserve-3d;cursor:pointer}
+.reels .reel.act{flex:2.2}
+.reels .reel:not(.act){filter:brightness(.5) saturate(.7)}
+.reels .reel h3{transition:font-size .6s}
+.reels .reel:not(.act) h3{font-size:28px}
+.reels .reel::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,40%),rgba(var(--acc-rgb),.18),transparent 50%);opacity:0;transition:opacity .4s;pointer-events:none}
+.reels .reel.act::after{opacity:1}
+.reel-dots{display:none;justify-content:center;gap:8px;margin-top:14px}
+.reel-dots i{width:22px;height:3px;background:var(--line);transition:background .3s,width .3s}
+.reel-dots i.on{background:var(--lime);width:40px}
+
+/* 06 studio compare */
+.cmp{position:relative;aspect-ratio:16/11;max-height:82vh;overflow:hidden;border:1px solid var(--line);cursor:ew-resize;touch-action:pan-y;user-select:none;-webkit-user-select:none;--p:50%;width:min(1180px,100%);margin:0 auto}
+.cmp img{object-position:50% 58%}
+.cmp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.cmp-b{position:absolute;inset:0;clip-path:inset(0 0 0 var(--p))}
+.cmp-line{position:absolute;top:0;bottom:0;left:var(--p);width:2px;margin-left:-1px;background:var(--lime);box-shadow:0 0 18px 3px rgba(var(--acc-rgb),.6)}
+.cmp-knob{position:absolute;top:50%;left:50%;width:54px;height:54px;margin:-27px 0 0 -27px;border-radius:50%;background:var(--lime);display:grid;place-items:center;box-shadow:0 0 30px rgba(var(--acc-rgb),.7);transition:transform .3s}
+.cmp:active .cmp-knob{transform:scale(1.12)}
+.cmp-knob svg{width:22px;height:22px;stroke:var(--bg);fill:none;stroke-width:2.2}
+.cmp-tag{position:absolute;top:14px;font-family:var(--display);font-size:18px;letter-spacing:.08em;background:rgba(8,8,8,.75);padding:6px 10px 4px;color:var(--lime);transition:opacity .3s}
+.cmp-tag.l{left:14px}.cmp-tag.r{right:14px}
+
+/* 07 gallery: draggable drifting strip */
+.gal{position:relative;overflow:hidden;margin-left:calc(-1*var(--gx));margin-right:calc(-1*var(--gxr));padding:30px 0 40px;touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:grab;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.gal.drag{cursor:grabbing}
+.gal-track{display:flex;gap:22px;width:max-content;will-change:transform}
+.gi{position:relative;flex:none;width:clamp(220px,22vw,320px);aspect-ratio:3/4;margin:0;overflow:hidden;border:1px solid var(--line);background:var(--ink);transform:translateY(var(--y,0)) rotate(calc(var(--r,0deg) + var(--sk,0deg)));transition:transform .5s cubic-bezier(.22,1,.36,1),box-shadow .4s}
+.gi:nth-child(3n+1){--r:-3deg;--y:18px}.gi:nth-child(3n+2){--r:2.5deg;--y:-14px}.gi:nth-child(3n){--r:-1deg;--y:6px}
+.gi img{width:100%;height:100%;object-fit:cover;pointer-events:none;filter:grayscale(1) contrast(1.1);transition:filter .6s,transform 1s cubic-bezier(.22,1,.36,1)}
+.gi:hover{--r:0deg;--y:-10px;box-shadow:0 30px 60px rgba(0,0,0,.6),0 0 0 1px var(--lime);z-index:2}
+.gi:hover img{filter:none;transform:scale(1.06)}
+.gi figcaption{position:absolute;left:12px;bottom:12px;font-family:var(--display);font-size:22px;letter-spacing:.04em;text-shadow:0 2px 12px rgba(0,0,0,.7)}
+.gi figcaption b{color:var(--lime);font-weight:400}
+.wrap-hint{margin-top:4px}
+@media (hover:none){.gi img{filter:none}}
+
+/* 05 day + 06 studio */
+.day{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.day .aw{aspect-ratio:3/4}
+.studio{display:flex;flex-direction:column;gap:clamp(28px,4vw,48px)}
+.studio-txt{display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:end}
+.studio-txt .lede{margin-top:0}
+.studio .aw{aspect-ratio:1200/1379}
+.studio-txt .lede{margin-top:20px}
+.aw button img{transition:transform .8s var(--ease)}
+.aw button:hover img{transform:scale(1.04)}
+
+/* 05 gallery accordion */
+.strip{display:flex;gap:12px;height:min(70vh,620px)}
+.panel{position:relative;flex:1;min-width:0;overflow:hidden;transition:flex .7s var(--ease);background:var(--ink)}
+.panel img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) brightness(.75);transition:filter .7s var(--ease),transform 1.2s var(--ease)}
+.panel:hover,.panel:focus-visible{flex:3.2}
+.panel:hover img,.panel:focus-visible img{filter:none;transform:scale(1.03)}
+.panel figcaption{position:absolute;left:12px;right:12px;bottom:12px;font-family:var(--display);font-size:24px;line-height:1;display:flex;gap:10px;white-space:nowrap;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.panel figcaption b{color:var(--lime);font-weight:400}
+.panel .t{opacity:0;transform:translateY(8px);transition:.5s var(--ease)}
+.panel:hover .t,.panel:focus-visible .t{opacity:1;transform:none}
+
+/* 06 about */
+.about{position:relative;overflow:hidden;isolation:isolate;padding-top:clamp(52px,6vw,90px);margin-top:clamp(16px,2vw,32px)}
+.about .bg{position:absolute;inset:0;z-index:-1}
+.about .bg img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;filter:grayscale(1) contrast(1.2) brightness(.55)}
+.about .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--bg) 0%,rgba(8,8,8,.35) 30%,rgba(var(--acc-rgb),.18) 70%,var(--bg) 100%),linear-gradient(90deg,rgba(8,8,8,.85),rgba(8,8,8,.2) 60%);}
+.about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:end}
+.about .lede{margin-top:20px;max-width:30ch}
+.rules{font-family:var(--display);color:var(--lime);font-size:clamp(52px,6vw,84px);line-height:.86;text-align:left;justify-self:end}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);margin-top:clamp(56px,7vw,100px);border-top:1px solid var(--line)}
+.stat{padding:22px 10px 30px;text-align:center}
+.stat + .stat{border-left:1px solid var(--line)}
+.stat b{display:block;font-family:var(--ui);font-weight:700;font-size:clamp(44px,6.6vw,104px);line-height:1;letter-spacing:-.04em;color:var(--lime)}
+.stat span{display:block;font-family:var(--ui);font-weight:700;font-size:clamp(14px,1.6vw,22px);text-transform:uppercase;margin-top:10px;letter-spacing:-.01em}
+
+/* 08 pitch */
+.pitch{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(24px,4vw,64px);margin-top:clamp(48px,6vw,90px);align-items:start}
+.pitch-lead{font-family:var(--body);font-weight:400;font-size:clamp(26px,2.6vw,38px);line-height:1.08;letter-spacing:.02em;color:var(--fg);max-width:30ch}
+.pitch-lead em{font-style:normal;color:var(--lime)}
+.pitch-sub{color:var(--fg-80);font-weight:300;font-size:21px;line-height:1.32;letter-spacing:.03em;max-width:42ch;border-left:2px solid var(--lime);padding-left:18px}
+.why{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:clamp(40px,5vw,70px)}
+.why article{background:rgba(8,8,8,.72);border:1px solid var(--line);padding:24px 22px 26px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:border-color .3s,transform .4s var(--ease)}
+.why article:hover{border-color:var(--lime);transform:translateY(-4px)}
+.why b{font-family:var(--display);font-weight:400;color:var(--lime);font-size:20px;letter-spacing:.08em}
+.why h3{font-family:var(--display);font-weight:400;font-size:clamp(30px,2.6vw,40px);line-height:.95;margin:10px 0 12px}
+.why p{color:var(--fg-80);font-size:19px;line-height:1.3}
+.events{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-top:34px}
+.events .ui-label{color:var(--lime);font-size:15px}
+.events ul{list-style:none;display:flex;gap:10px;flex-wrap:wrap}
+.events li{font-family:var(--display);font-size:20px;letter-spacing:.05em;border:1px solid var(--line);padding:8px 14px 6px;background:rgba(8,8,8,.6)}
+.book{display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap;margin-top:clamp(40px,5vw,70px);padding:clamp(24px,3vw,40px);border:1px solid var(--lime);background:rgba(8,8,8,.8)}
+.book h3{font-family:var(--display);font-weight:400;font-size:clamp(44px,5vw,72px);line-height:.88}
+.book p{color:var(--fg-80);max-width:44ch;margin-top:10px}
+.book .btn{height:52px;font-size:22px;padding-left:30px}
+
+/* 07 creed */
+.creed{position:relative;overflow:hidden;isolation:isolate;min-height:min(70vh,620px);display:flex;align-items:flex-end;padding-bottom:70px}
+.creed .bg{position:absolute;inset:0;z-index:-1}
+.creed .bg img{width:100%;height:100%;object-fit:cover;object-position:50% 25%;filter:grayscale(1) brightness(.55) contrast(1.2)}
+.creed .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--bg),rgba(8,8,8,.1) 35%,rgba(var(--acc-rgb),.22) 70%,rgba(8,8,8,.9)),linear-gradient(90deg,rgba(8,8,8,.75),transparent 70%);mix-blend-mode:normal}
+.creed .btns{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
+
+/* footer */
+footer{position:relative;background:var(--bg);overflow:hidden;padding-bottom:max(20px,env(safe-area-inset-bottom,0px))}
+.fmarq{display:flex;width:max-content;animation:mq 30s linear infinite;padding:16px 0 6px;border-bottom:1px solid var(--line)}
+.fmarq span{font-family:var(--ui);font-weight:700;font-size:clamp(26px,3vw,40px);text-transform:uppercase;padding:0 36px;white-space:nowrap}
+.fmarq span:nth-child(odd){color:var(--lime)}
+.fgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px;padding-top:40px;padding-bottom:40px;border-bottom:1px solid var(--line)}
+.fgrid h4{font-family:var(--display);font-weight:400;font-size:clamp(48px,5vw,72px);line-height:.9;margin-bottom:18px}
+.fgrid ul{list-style:none;display:flex;flex-direction:column;gap:4px}
+.fgrid li,.fgrid li a{font-family:var(--body);font-weight:300;font-size:30px;letter-spacing:.06em;text-transform:uppercase;line-height:1.1}
+.fgrid li a:hover{color:var(--lime)}
+.fgrid .soc li{display:flex;align-items:center;gap:12px}
+.fgrid .soc svg{width:28px;height:28px;stroke:var(--fg);fill:none;stroke-width:1.6;flex:none}
+.fgrid .soc small{font-size:14px;letter-spacing:.1em;color:var(--mute)}
+.fgrid .loc p{font-family:var(--ui);font-size:13px;letter-spacing:.26em;text-transform:uppercase;color:var(--fg-80)}
+.fgrid .loc p::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--lime);margin-right:8px;vertical-align:1px}
+.fgrid .loc .places{font-family:var(--display);font-size:30px;letter-spacing:.06em;line-height:1.05;margin-top:14px;color:var(--fg)}
+.fbig{position:relative;height:clamp(260px,32vw,420px)}
+.ghost{position:absolute;inset:auto 0 30px 0;display:flex;width:max-content;animation:mq 40s linear infinite;font-family:var(--display);font-size:clamp(160px,24vw,330px);line-height:.8;color:#1a1a1a;white-space:nowrap}
+.ghost span{padding:0 40px}
+.ticket{position:absolute;left:50%;bottom:-6px;transform:translateX(-50%);width:min(460px,calc(100% - 32px));background:#1b1b1b;border:1px solid #2c2c2c;padding:22px 30px 18px;font-family:var(--ui)}
+.ticket::before,.ticket::after{content:"+";position:absolute;top:8px;color:var(--mute);font-size:14px}
+.ticket::before{left:12px}.ticket::after{right:12px}
+.ticket .t1{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:.12em;color:var(--mute)}
+.ticket .t1 b{font-size:13px;letter-spacing:.24em;color:var(--fg)}
+.ticket .t1 i{font-style:normal;border:1px solid #3a3a3a;padding:3px 8px}
+.ticket h5{font-family:var(--ui);font-weight:700;font-size:clamp(28px,3.4vw,34px);line-height:1.02;letter-spacing:-.01em;margin:30px 0 30px;text-transform:uppercase}
+.ticket h5 em{font-style:normal;color:var(--lime)}
+.ticket .t3{display:flex;justify-content:space-between;font-size:11px;letter-spacing:.1em;color:var(--mute);border-top:1px dashed #3a3a3a;padding-top:12px}
+.fbar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:16px;font-family:var(--ui);font-weight:500;font-size:14px;text-transform:uppercase;letter-spacing:.02em}
+
+/* cursor: lime glow trail, like the original */
+.cur{position:fixed;inset:0;pointer-events:none;z-index:999;display:none}
+.cur i{position:absolute;left:0;top:0;border-radius:50%;background:radial-gradient(circle,var(--lime) 0%,rgba(var(--acc-rgb),0) 72%);will-change:transform}
+.cur .orbit{position:absolute;left:0;top:0;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;border:1.5px dashed var(--lime);opacity:0;transform:scale(.4);transition:opacity .25s,transform .35s var(--ease)}
+.cur .orbit span{display:block;width:100%;height:100%;border-radius:50%;animation:spin 2.2s linear infinite}
+.cur .orbit span::before{content:"";position:absolute;top:-4px;left:50%;width:7px;height:7px;margin-left:-3.5px;border-radius:50%;background:var(--lime);box-shadow:0 0 10px var(--lime)}
+.cur.hot .orbit{opacity:1;transform:scale(1)}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .has-cur,.has-cur *{cursor:none!important}
+  .has-cur .cur{display:block}
+}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:80;background:rgba(8,8,8,.94);display:grid;place-items:center;padding:calc(20px + env(safe-area-inset-top,0px)) 16px calc(20px + env(safe-area-inset-bottom,0px));opacity:0;pointer-events:none;transition:opacity .35s var(--ease)}
+.lb.open{opacity:1;pointer-events:auto}
+.lb img{max-height:86vh;max-width:min(92vw,900px);width:auto;object-fit:contain;transform:scale(.96);transition:transform .45s var(--ease)}
+.lb.open img{transform:none}
+.lb .x{position:absolute;top:calc(16px + env(safe-area-inset-top,0px));right:max(16px,env(safe-area-inset-right,0px));width:46px;height:46px;border:1px solid var(--line);font-family:var(--display);font-size:22px;background:var(--bg)}
+.lb p{font-family:var(--display);font-size:22px;letter-spacing:.06em;color:var(--lime);margin-top:12px;text-align:center}
+
+/* text system: one intro style, one body style, one column grid */
+:root{--measure:34ch;--body-measure:46ch}
+.lede,.bio .lede,.day-txt .lede,.about .lede,.studio-txt .lede,.hero-sub .lede{font-family:var(--body);font-weight:300;font-size:clamp(22px,2vw,28px);line-height:1.16;letter-spacing:.04em;color:var(--fg-80);max-width:var(--measure)}
+.bio .lede{color:var(--fg)}
+.day-txt .lede,.about .lede{margin-top:18px}
+.bio p:not(.lede):not(.seal),.pitch-sub,.reel-note p,.award-txt p:not(.big),.cf-txt p:not(.meta),.book p,.pcard p,.why p,.bio .seal{font-family:var(--body);font-weight:300;font-size:20px;line-height:1.4;letter-spacing:.03em;color:var(--fg-80);max-width:var(--body-measure)}
+.why p{max-width:none}
+.bio .seal{color:var(--fg)}
+.bio p + p{margin-top:14px}
+.head,.studio-txt,.about-grid,.pitch{grid-template-columns:minmax(0,1fr) minmax(0,clamp(300px,32vw,460px));gap:40px;align-items:end}
+.about-grid .rules{justify-self:start}
+.h-xl{font-size:clamp(60px,8.8vw,130px)}
+.pitch{align-items:start}
+.head .side,.studio-txt > div:last-child{padding-bottom:10px}
+.pitch-lead{font-size:clamp(24px,2.4vw,34px);line-height:1.12;max-width:30ch}
+.cf-txt .meta,.pcard .meta{max-width:var(--body-measure)}
+.why article{display:flex;flex-direction:column}
+@media (min-width:1101px){.why h3{min-height:2em;display:flex;align-items:flex-end}}
+
+/* responsive */
+@media (max-width:1100px){
+  .links{display:none}
+  .burger{display:block}
+  .manifesto{grid-template-columns:1fr 1fr}
+  .manifesto .portrait{grid-row:span 2}
+  .reels{grid-template-columns:1fr 1fr 1fr}
+  .reel-note{grid-template-columns:1fr 1fr}
+  .reel-note .btn{grid-column:1/-1;justify-self:start}
+  .awards{grid-template-columns:1fr 1fr}
+  .award-card{grid-column:1/-1;flex-direction:row}
+  .award-card .aw.vid{width:42%;flex:none}
+  .why{grid-template-columns:1fr 1fr}
+  .day{grid-template-columns:1fr 1fr}
+  .cf{grid-template-columns:1fr}
+  .cf-stage{height:clamp(440px,70vw,600px)}
+  .studio{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+  :root{--gx:max(16px,env(safe-area-inset-left,0px));--gxr:max(16px,env(safe-area-inset-right,0px))}
+  body{font-size:19px}
+  .nav-r .btn{display:none}
+  .logo{font-size:17px;letter-spacing:.32em}
+  .sound .sep,.sound .time{display:none}
+  .sound{padding:0 12px}
+  .head,.manifesto,.about-grid{grid-template-columns:1fr}
+  .head{gap:18px}
+  .manifesto .portrait{grid-row:auto;order:-1}
+  .sig{flex-direction:column;align-items:flex-start}
+  .type{text-align:left}
+  .hero-foot{grid-template-columns:1fr}
+  .next{text-align:left}
+  .wave{display:none}
+  .reels{height:auto;overflow-x:auto;scroll-snap-type:x mandatory;margin-left:calc(-1*var(--gx));margin-right:calc(-1*var(--gxr));padding:10px 11%;scrollbar-width:none;perspective:900px}
+  .reels::-webkit-scrollbar{display:none}
+  .reels .reel,.reels .reel.act{flex:0 0 78%;aspect-ratio:3/4;height:auto;scroll-snap-align:center;filter:none}
+  .reels .reel:not(.act) h3{font-size:40px}
+  .reel-dots{display:flex}
+  .gi{width:62vw}
+  .cmp-tag{font-size:15px}
+  .cmp-tag.r{top:auto;bottom:14px}
+  .studio-txt{grid-template-columns:1fr;gap:16px}
+  .cmp{aspect-ratio:1/1;max-height:none;width:auto;margin-left:calc(-1*var(--gx));margin-right:calc(-1*var(--gxr));border-left:0;border-right:0}
+  .cmp img{object-position:50% 55%}
+  .cmp-knob{width:64px;height:64px;margin:-32px 0 0 -32px}
+  .cmp-line{width:3px;margin-left:-1.5px}
+  .pcard{position:relative;top:auto;grid-template-columns:1fr;height:auto;min-height:0}
+  .pcard .poster{order:-1;padding:12px 12px 0;height:auto}
+  .pcard .poster button{height:auto;width:100%;max-width:100%;aspect-ratio:auto}
+  .pcard .poster img{height:auto}
+  .pcard .info{gap:14px}
+  .reel-note{grid-template-columns:1fr}
+  .pcard .info{padding:16px 18px 22px}
+  .pcard p{display:none}
+  .awards{grid-template-columns:1fr}
+  .cf-card{width:68%}
+  .cf-stage{height:118vw;max-height:560px}
+  .daywrap{grid-template-columns:1fr}
+  .deck{width:min(330px,82vw)}
+  .swipe-hint{display:flex}
+  .day{grid-template-columns:1fr 1fr;gap:10px}
+  .day .reel{grid-column:1/-1}
+  .studio{gap:10px}
+  .award-card{flex-direction:column}
+  .award-card .aw.vid{width:100%}
+  .strip{height:auto;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;-webkit-overflow-scrolling:touch}
+  .panel{flex:0 0 72%;aspect-ratio:3/4;scroll-snap-align:start}
+  .panel:hover,.panel:focus-visible{flex:0 0 72%}
+  .panel img{filter:none}
+  .panel .t{opacity:1;transform:none}
+  .rules{justify-self:start}
+  .stats{grid-template-columns:1fr}
+  .pitch,.why{grid-template-columns:1fr}
+  .book .btn{width:100%}
+  .stat + .stat{border-left:0;border-top:1px solid var(--line)}
+  .fgrid{grid-template-columns:1fr}
+  .fbar{flex-direction:column;align-items:flex-start;gap:6px}
+  .fbig{height:300px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}
+  .hero h1 .ch{transform:none}
+  .js [data-reveal].pre{opacity:1;transform:none}
+}
+
+/* ===== Martín Gala / Galaxet ===== */
+html[data-mode=gx]{--lime:#b98bff;--acc-rgb:185,139,255}
+.gx-zone{--lime:#b98bff;--acc-rgb:185,139,255}
+html,body{transition:none}
+.dot,.btn,.tag,.playbtn,.sound .led,.eq i,.lime,.hero h1 .row:last-child,.next,.eyebrow b{transition:background-color .6s var(--ease),color .6s var(--ease),border-color .6s var(--ease)}
+/* hero image swap */
+.hero-img .hi{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity 1s var(--ease),transform 6s linear}
+.hero-img .hi.on{opacity:1;transform:scale(1)}
+.hero-img .hi-mg.on{animation:zoomIn 2.2s var(--ease) both}
+.hero h1{position:relative}
+.hero h1 .hset{display:flex;flex-direction:column;transition:opacity .5s var(--ease),transform .7s var(--ease)}
+.hero h1 .hset-gx{position:absolute;inset:0;opacity:0;transform:translateY(20px);pointer-events:none}
+html[data-mode=gx] .hero h1 .hset-mg{opacity:0;transform:translateY(-20px)}
+html[data-mode=gx] .hero h1 .hset-gx{opacity:1;transform:none}
+.seg{display:inline-flex;border:1px solid var(--lime);flex:none}
+.segb{font-family:var(--display);font-size:18px;letter-spacing:.08em;text-transform:uppercase;padding:7px 12px 5px;color:var(--fg);transition:background .4s var(--ease),color .4s var(--ease)}
+.segb[aria-pressed=true]{background:var(--lime);color:var(--bg)}
+.hero-sub .lede{max-width:30ch}
+.sound .lbl{min-width:96px;text-align:left}
+a.mute{color:inherit}
+.mute svg path{fill:var(--lime);stroke:none}
+.proj img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.proj.act img{transform:scale(1.03)}
+.proj .pg{font-family:var(--display);font-size:20px;letter-spacing:.06em;color:var(--fg-80);margin-top:6px}
+.reels .proj h3{font-size:clamp(44px,5vw,72px)}
+.proj-gx{--lime:#b98bff;--acc-rgb:185,139,255}
+/* temporada */
+.season{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:14px;align-items:stretch}
+.season .aw.tall{min-height:0;aspect-ratio:3/4}
+.season .aw img{object-position:50% 40%}
+.agenda{list-style:none;border:1px solid var(--line);background:var(--ink);padding:8px 26px;display:flex;flex-direction:column;justify-content:center}
+.agenda li{display:grid;grid-template-columns:100px 1fr auto;gap:18px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.agenda li:last-child{border-bottom:0}
+.agenda time{font-family:var(--display);font-size:24px;letter-spacing:.04em;color:var(--lime)}
+.agenda span{font-family:var(--body);font-weight:300;font-size:18px;color:var(--fg-80);line-height:1.2}
+.agenda b{display:block;font-family:var(--display);font-weight:400;font-size:26px;letter-spacing:.02em;color:var(--fg);line-height:1}
+.agenda em{font-style:normal;font-family:var(--display);font-size:16px;letter-spacing:.08em;padding:5px 9px 3px;border:1px solid #ff7a2e;color:#ff7a2e;white-space:nowrap}
+.agenda em.gx{border-color:#b98bff;color:#b98bff}
+.agenda em.both{border-color:var(--fg-80);color:var(--fg)}
+/* dos caras */
+.cmp{aspect-ratio:4/5;width:min(620px,100%);max-height:none}
+.cmp img{object-position:50% 30%}
+.cmp-tag.r{color:#b98bff}
+.cmp-b{box-shadow:inset 2px 0 0 transparent}
+
+/* hero vídeos */
+.hero-img video.hi{object-position:50% 35%}
+.hero-vid video.hi{animation:none}
+/* reseñas */
+.revs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.rev{border:1px solid var(--line);background:var(--ink);padding:26px 24px 22px;display:flex;flex-direction:column;justify-content:space-between;gap:28px;margin:0}
+.rev p{font-family:var(--display);font-size:clamp(30px,2.6vw,40px);line-height:.95;color:var(--fg)}
+.rev p::before{content:"“";display:block;color:var(--lime);font-size:1.6em;line-height:.6;margin-bottom:6px}
+.rev footer{background:none;padding:0;overflow:visible;font-family:var(--body);font-weight:300;font-size:18px;color:var(--fg-80);line-height:1.2}
+.rev footer b{display:block;font-weight:400;color:var(--lime);font-size:19px;letter-spacing:.02em}
+.rev.big{grid-column:span 2;grid-row:span 2;border-color:var(--lime)}
+.rev.big p{font-size:clamp(48px,5.2vw,84px);line-height:.88}
+@media (max-width:1100px){.revs{grid-template-columns:1fr 1fr}.rev.big{grid-row:auto}}
+@media (max-width:760px){.revs{grid-template-columns:1fr}.rev.big{grid-column:auto}.rev.big p{font-size:52px}}
+@media (max-width:1100px){.season{grid-template-columns:1fr 1fr}}
+@media (max-width:760px){
+  .season{grid-template-columns:1fr}
+  .season .aw.tall{aspect-ratio:3/4}
+  .agenda{padding:4px 16px}
+  .agenda li{grid-template-columns:72px 1fr;gap:4px 14px}
+  .agenda em{grid-column:2;justify-self:start}
+  .agenda time{font-size:20px}
+  .agenda b{font-size:23px}
+  .seg{order:-1}
+  .hero-sub{flex-wrap:wrap}
+  .cmp{aspect-ratio:4/5;width:auto}
+  .cmp img{object-position:50% 30%}
+  .reels .proj h3{font-size:44px}
+}
+</style>
+
+</head>
+<body>
+<header class="nav">
+  <a href="#top" class="logo" aria-label="Martín Gala, inicio">Martín Gala</a>
+  <nav class="links ui-label" aria-label="Principal">
+    <a href="#proyectos">Proyectos</a><a href="#carteles">Carteles</a><a href="#temporada">Temporada</a><a href="#galaxet">Galaxet</a><a href="#resenas">Reseñas</a><a href="#booking">Booking</a>
+  </nav>
+  <div class="nav-r">
+    <a class="btn btn-gray" href="#contacto">Contratar <span class="ar"><svg viewBox="0 0 12 12" fill="none" stroke-width="1.6"><path d="M1 6h10M7 2l4 4-4 4"/></svg></span></a>
+    <button class="sound" id="sound" aria-pressed="false" aria-label="Activar el sonido del vídeo principal">
+      <span class="led"></span><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="lbl">SONIDO OFF</span><span class="sep"></span><span class="time" id="time">00:00</span>
+    </button>
+    <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span></button>
+  </div>
+</header>
+<div class="menu" id="menu">
+  <a class="big" href="#proyectos">Proyectos</a><a class="big" href="#carteles">Carteles</a><a class="big" href="#temporada">Temporada</a><a class="big" href="#galaxet">Galaxet</a><a class="big" href="#galeria">Galería</a><a class="big" href="#resenas">Reseñas</a><a class="big" href="#sobre">Quién es</a><a class="big" href="#booking">Booking</a>
+  <a class="btn" style="margin-top:24px;align-self:flex-start" href="#contacto">Contratar <span class="ar"><svg viewBox="0 0 12 12" fill="none" stroke-width="1.6"><path d="M1 6h10M7 2l4 4-4 4"/></svg></span></a>
+</div>
+
+<main id="top">
+  <!-- HERO: dos proyectos, un interruptor -->
+  <section class="hero">
+    <div class="hero-vid hero-img">
+      <video class="hi hi-mg on" id="vidMg" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="hero-mg.jpg"><source src="hero-mg.mp4" type="video/mp4"></video>
+      <video class="hi hi-gx" id="vidGx" muted loop playsinline webkit-playsinline preload="metadata" poster="hero-gx.jpg"><source src="hero-gx.mp4" type="video/mp4"></video>
+    </div>
+    <div class="wrap">
+      <h1 aria-label="Martín Gala / Galaxet">
+        <span class="hset hset-mg"><span class="row" data-split>MARTÍN</span><span class="row" data-split>GALA</span></span>
+        <span class="hset hset-gx" aria-hidden="true"><span class="row">GALA</span><span class="row">XET</span></span>
+      </h1>
+      <div class="hero-sub">
+        <div class="seg" role="group" aria-label="Elige proyecto">
+          <button class="segb" data-mode="mg" aria-pressed="true">Martín Gala</button>
+          <button class="segb" data-mode="gx" aria-pressed="false">Galaxet</button>
+        </div>
+        <p class="lede" id="heroLede">Techno, groove y house. Muchas veces, solo vinilo.</p>
+      </div>
+    </div>
+    <div class="wrap hero-foot">
+      <div class="listen">
+        <button class="playbtn" id="play" aria-label="Escuchar el vídeo con sonido"><svg viewBox="0 0 16 16"><path d="M3 1.5v13l11-6.5z"/></svg></button>
+        <div>
+          <small id="playTxt">Toca para escuchar a Martín Gala</small>
+          <svg class="wave" viewBox="0 0 340 34" preserveAspectRatio="none" aria-hidden="true"><path id="wave" d="M0 17 L340 17"/></svg>
+        </div>
+      </div>
+      <div class="next"><small>ÚLTIMA FECHA</small>33/45 CLUB · VALÈNCIA<br>03 OCT 2026<br>AFTERPARTY CUERPOS EN FUGA<br>MARTÍN GALA B2B YEEZA</div>
+    </div>
+  </section>
+
+  <div class="marq" aria-hidden="true"><div class="trk">
+    <span>Martín Gala</span><span>Vinilo</span><span>Galaxet</span><span>Groove</span><span>Psytek</span><span>Killing Time</span><span>Tekno</span><span>33/45</span>
+    <span>Martín Gala</span><span>Vinilo</span><span>Galaxet</span><span>Groove</span><span>Psytek</span><span>Killing Time</span><span>Tekno</span><span>33/45</span>
+  </div></div>
+
+  <!-- 07 GALERÍA -->
+  <section class="sec wrap" id="galeria">
+    <div class="head">
+      <div data-reveal>
+        <p class="eyebrow"><b>01</b> Archivo visual</p>
+        <h2 class="h-xl">Mil caras,<br>un mismo oído<span class="dot"></span></h2>
+      </div>
+      <div class="side" data-reveal>
+        <p class="lede">Estudio, cabina y fiesta. Las fotos que cuentan quién es sin decir nada.</p>
+      </div>
+    </div>
+    <div class="gal" id="gal" data-reveal aria-label="Galería de fotos. Arrastra para moverla.">
+      <div class="gal-track" id="galTrack"></div>
+    </div>
+    <p class="swipe-hint wrap-hint"><span>←</span> Arrastra la galería o toca una foto <span>→</span></p>
+  </section>
+
+  <!-- 01 QUIÉN ES -->
+  <section class="sec wrap" id="sobre">
+    <p class="eyebrow" data-reveal><b>02</b> Quién es</p>
+    <div class="manifesto">
+      <h2 class="h-xl" data-reveal>Un DJ,<br>dos<br>velocidades<span class="dot"></span></h2>
+      <div class="bio" data-reveal>
+        <p class="lede">De día pincha groove en vinilo. Cuando cae la noche, sube a 150 y se convierte en Galaxet.</p>
+        <p>Como Martín Gala lleva la cabina con discos: techno, groove y house para clubs como Killing Time en Ruzafa, 33/45 o La Rítmica. Como Galaxet se va al psytrance, al tekno y al psytek en raves y fiestas de colectivo como Amagatall d'Hilari o Tulum.</p>
+        <p>Es fundador del colectivo ALPO, residente en las fiestas de Orange Juice y está representado por BTZ Agency.</p>
+        <p class="seal"><span>Su sello</span>De 125 a 170 BPM sin perder el hilo. Mezcla a vinilo de verdad y siempre pincha para la gente que tiene delante.</p>
+      </div>
+      <figure class="portrait" data-reveal><img src="retrato-bn.webp" alt="Retrato en blanco y negro de Martín Gala con chaqueta de cuero"></figure>
+    </div>
+    <div class="sig" data-reveal>
+      <p class="mini">ESTE ES <span class="lime">MARTÍN GALA</span>.</p>
+      <p class="type">GROOVE A VINILO.<br>PSYTEK DE MADRUGADA.</p>
+    </div>
+  </section>
+
+  <!-- 02 PROYECTOS -->
+  <section class="sec wrap" id="proyectos">
+    <div class="head">
+      <div data-reveal>
+        <p class="eyebrow"><b>03</b> Los proyectos</p>
+        <h2 class="h-xl">Cada uno<br>con su pista<span class="dot"></span></h2>
+      </div>
+      <div class="side" data-reveal>
+        <p class="lede">Martín Gala y Galaxet. Mismo DJ, distinta energía. Pasa por encima para abrir cada uno.</p>
+      </div>
+    </div>
+    <div class="reels" id="reels">
+      <article class="reel proj proj-mg" data-reveal>
+        <video muted loop playsinline webkit-playsinline preload="metadata" poster="b2b.jpg" data-autoplay><source src="b2b.mp4" type="video/mp4"></video>
+        <div class="cap"><div><span class="ui-label">Proyecto 01 · 125–135 BPM</span><h3>Martín Gala</h3><p class="pg">Techno · Groove · House · Vinyl</p></div>
+          <button class="mute" aria-label="Activar sonido del vídeo de Martín Gala" aria-pressed="false"><svg class="off" viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M17 9l5 6M22 9l-5 6"/></svg><svg class="on" viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M17 8a5 5 0 0 1 0 8M19.5 5.5a8.5 8.5 0 0 1 0 13"/></svg></button></div>
+      </article>
+      <article class="reel proj proj-gx" data-reveal>
+        <img src="galaxet-amagatall.webp" alt="Galaxet pinchando en Amagatall d'Hilari" style="object-position:55% 40%">
+        <div class="cap"><div><span class="ui-label">Proyecto 02 · 145–170 BPM</span><h3>Galaxet</h3><p class="pg">Psytrance · Tekno · Psytek</p></div>
+          <a class="mute" href="https://www.instagram.com/martingala_galaxet/" target="_blank" rel="noopener" aria-label="Ver Galaxet en Instagram"><svg viewBox="0 0 24 24"><path d="M7 5v14l12-7z"/></svg></a></div>
+      </article>
+    </div>
+    <div class="reel-dots" id="reelDots" aria-hidden="true"><i class="on"></i><i></i></div>
+    <aside class="reel-note" data-reveal>
+        <p>Dos formas de llevar la noche: una con los pies en el groove, la otra con la cabeza en la órbita.</p>
+        <dl class="specs">
+          <dt>Clubs</dt><dd>Killing Time · 33/45</dd>
+          <dt>Raves</dt><dd>Amagatall · Tulum</dd>
+          <dt>Colectivos</dt><dd>ALPO · Orange Juice</dd>
+          <dt>Agencia</dt><dd>BTZ Agency</dd>
+        </dl>
+        <a class="btn" href="#contacto">Contratar <span class="ar"><svg viewBox="0 0 12 12" fill="none" stroke-width="1.6"><path d="M1 6h10M7 2l4 4-4 4"/></svg></span></a>
+    </aside>
+  </section>
+
+  <!-- 03 CARTELES -->
+  <section class="sec wrap" id="carteles">
+    <div class="head">
+      <div data-reveal>
+        <p class="eyebrow"><b>04</b> Carteles</p>
+        <h2 class="h-xl">Su nombre<br>en el cartel<span class="dot"></span></h2>
+      </div>
+      <div class="side" data-reveal>
+        <p class="lede">Algunas de las noches de 2026, con sus carteles originales. Arrastra para pasar de uno a otro.</p>
+      </div>
+    </div>
+    <div class="cf" id="cf">
+      <div class="cf-ghost" aria-hidden="true"><span>CARTELES · NOCHES · CARTELES · NOCHES · </span><span>CARTELES · NOCHES · CARTELES · NOCHES · </span></div>
+      <div class="cf-stage" id="cfStage" tabindex="0" aria-roledescription="carrusel" aria-label="Carteles. Usa las flechas para cambiar.">
+        <figure class="cf-card"><img src="cartel-ssn001.webp" alt="Cartel rojo de SSN 001 en 33/45 con Martín Gala, Elevens y Neønexus" draggable="false"><span class="glare"></span></figure>
+        <figure class="cf-card"><img src="cartel-alpo-tulum.webp" alt="Cartel de ALPO Collective, Primal Motion y Vant en Discoteca Tulum con Galaxet" draggable="false"><span class="glare"></span></figure>
+        <figure class="cf-card"><img src="cartel-afterparty.webp" alt="Cartel del afterparty de house, minimal y techno en 33/45 Club" draggable="false"><span class="glare"></span></figure>
+        <figure class="cf-card"><img src="cartel-btz.webp" alt="Ficha de artista de Martín Gala de BTZ Agency" draggable="false"><span class="glare"></span></figure>
+      </div>
+      <div class="cf-info">
+        <div class="cf-txt" id="cfTxt" aria-live="polite">
+          <span class="chip">ARCHIVO · <b id="cfNum">01</b> / 04</span>
+          <h3 id="cfTitle">SSN 001</h3>
+          <p class="meta" id="cfMeta">33/45 · VALÈNCIA<br>VIERNES 19 JUNIO · 22:00 — 03:30</p>
+          <p id="cfText">La primera SSN, con Martín Gala, Elevens y Neønexus. Entrada gratuita con RSVP.</p>
+        </div>
+        <div class="cf-ctrl">
+          <button class="cf-btn" id="cfPrev" aria-label="Cartel anterior"><svg viewBox="0 0 12 12" fill="none" stroke-width="1.6"><path d="M11 6H1M5 2L1 6l4 4"/></svg></button>
+          <div class="cf-bar"><i id="cfBar"></i></div>
+          <button class="cf-btn" id="cfNext" aria-label="Cartel siguiente"><svg viewBox="0 0 12 12" fill="none" stroke-width="1.6"><path d="M1 6h10M7 2l4 4-4 4"/></svg></button>
+        </div>
+        <button class="btn btn-gray" id="cfOpen">Ver cartel en grande <span class="ar"><svg viewBox="0 0 12 12" fill="none" stroke-width="1.6"><path d="M1 6h10M7 2l4 4-4 4"/></svg></span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 TEMPORADA -->
+  <section class="sec wrap" id="temporada">
+    <div class="head">
+      <div data-reveal>
+        <p class="eyebrow"><b>05</b> Temporada</p>
+        <h2 class="h-xl">Un verano<br>sin parar<span class="dot"></span></h2>
+      </div>
+      <div class="side" data-reveal>
+        <p class="lede">Verano y otoño de 2026, fecha a fecha. Cada una dice con qué proyecto fue.</p>
+      </div>
+    </div>
+    <div class="season">
+      <figure class="aw tall" data-reveal>
+        <button data-lb="verano-fechas.webp" data-cap="Fechas de verano 2026" aria-label="Ampliar el cartel de fechas de verano" style="position:absolute;inset:0"><img src="verano-fechas.webp" alt="Martín Gala con gafas de sol junto a la lista de fechas del verano 2026"></button>
+        <figcaption class="cap"><span class="num">FOTOS · SERGI SELLÉS</span></figcaption>
+      </figure>
+      <ol class="agenda" data-reveal>
+        <li><time>11–12 JUL</time><span><b>Trip to Freedom</b>Un día de cada: vinilo y psytrance</span><em class="both">Los dos</em></li>
+        <li><time>16 JUL</time><span><b>Killing Time · 9º aniversario</b>Vinyl set en Ruzafa</span><em>Martín Gala</em></li>
+        <li><time>24 JUL</time><span><b>Funky Food</b>Galaxet and friends</span><em class="gx">Galaxet</em></li>
+        <li><time>31 JUL</time><span><b>Amagatall d'Hilari</b>Spartan Rave</span><em class="gx">Galaxet</em></li>
+        <li><time>07 AGO</time><span><b>Discoteca Tulum</b>ALPO × Primal Motion × Vant</span><em class="gx">Galaxet</em></li>
+        <li><time>21 AGO</time><span><b>Discoteca Tulum</b>Vinyl set</span><em>Martín Gala</em></li>
+        <li><time>28 AGO</time><span><b>Killing Time</b>Cumpleaños con Pigmento Sónico</span><em>Martín Gala</em></li>
+        <li><time>19 SEP</time><span><b>Calablava Beach Club</b>Cierre de verano</span><em>Martín Gala</em></li>
+        <li><time>03 OCT</time><span><b>33/45 Club</b>Afterparty Cuerpos en fuga · b2b Yeeza</span><em>Martín Gala</em></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 05 GALAXET -->
+  <section class="sec wrap gx-zone" id="galaxet">
+    <div class="daywrap">
+      <div class="day-txt" data-reveal>
+        <p class="eyebrow"><b>06</b> Galaxet</p>
+        <h2 class="h-xl">Cuando<br>cae la noche<span class="dot"></span></h2>
+        <p class="lede">Psytrance, tekno y psytek. Luz ultravioleta, collar de chaquira y una pista que no baja de 150.</p>
+        <div class="deck-ctrl">
+          <button class="cf-btn" id="dkPrev" aria-label="Foto anterior"><svg viewBox="0 0 12 12" fill="none" stroke-width="1.6"><path d="M11 6H1M5 2L1 6l4 4"/></svg></button>
+          <span class="dk-count"><b id="dkNum">01</b> / 04</span>
+          <button class="cf-btn" id="dkNext" aria-label="Foto siguiente"><svg viewBox="0 0 12 12" fill="none" stroke-width="1.6"><path d="M1 6h10M7 2l4 4-4 4"/></svg></button>
+        </div>
+        <p class="swipe-hint"><span>←</span> Desliza la foto <span>→</span></p>
+      </div>
+      <div class="deck" id="deck" aria-label="Fotos de Galaxet. Desliza para pasar.">
+        <figure class="dk" data-src="galaxet-pista.webp" data-cap="Galaxet · de espaldas a la cabina"><img src="galaxet-pista.webp" alt="Galaxet de espaldas en la cabina con la pista bajo luz ultravioleta" draggable="false" style="object-position:50% 50%"><figcaption class="cap"><span class="num">LA PISTA</span></figcaption></figure>
+        <figure class="dk" data-src="galaxet-cascos.webp" data-cap="Galaxet en Amagatall"><img src="galaxet-cascos.webp" alt="Galaxet con los cascos en Amagatall d'Hilari" draggable="false" style="object-position:40% 50%"><figcaption class="cap"><span class="num">AMAGATALL</span></figcaption></figure>
+        <figure class="dk" data-src="galaxet-mixer.webp" data-cap="Las manos en el mixer"><img src="galaxet-mixer.webp" alt="Manos de Galaxet en el mixer Pioneer DJM-800" draggable="false"><figcaption class="cap"><span class="num">EL MIXER</span></figcaption></figure>
+        <figure class="dk" data-src="galaxet-collar.webp" data-cap="Galaxet en la cabina"><img src="galaxet-collar.webp" alt="Galaxet inclinado sobre los platos con collar de chaquira" draggable="false" style="object-position:55% 40%"><figcaption class="cap"><span class="num">EN LA CABINA</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 DOS CARAS -->
+  <section class="sec wrap" id="caras">
+    <div class="studio">
+      <div class="studio-txt" data-reveal>
+        <div><p class="eyebrow"><b>07</b> Dos caras</p>
+        <h2 class="h-xl">Elige<br>con quién bailas<span class="dot"></span></h2></div>
+        <div><p class="lede">La misma sesión de fotos, dos personajes. Arrastra la línea para pasar de uno a otro.</p>
+        <p class="swipe-hint"><span>←</span> Arrastra la línea <span>→</span></p></div>
+      </div>
+      <div class="cmp" id="cmp" data-reveal role="slider" tabindex="0" aria-label="Compara a Martín Gala y Galaxet" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+        <img src="retrato-vinilo.webp" alt="Martín Gala con los cables de los cascos junto al plato" draggable="false">
+        <div class="cmp-b"><img src="retrato-cables.webp" alt="Galaxet mirando a cámara con las manos sobre los cables" draggable="false"></div>
+        <span class="cmp-tag l">MARTÍN GALA</span><span class="cmp-tag r">GALAXET</span>
+        <div class="cmp-line"><span class="cmp-knob"><svg viewBox="0 0 24 24"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEÑAS -->
+  <section class="sec wrap" id="resenas">
+    <div class="head">
+      <div data-reveal>
+        <p class="eyebrow"><b>08</b> Lo que dicen</p>
+        <h2 class="h-xl">Desde<br>la pista<span class="dot"></span></h2>
+      </div>
+      <div class="side" data-reveal>
+        <p class="lede">Comentarios de verdad en sus publicaciones, de gente que estaba allí.</p>
+      </div>
+    </div>
+    <div class="revs" data-reveal>
+      <blockquote class="rev big"><p>Que noche esa noche! Un cierre a tope! Que se repita!</p><footer><b>@maauureette</b>Killing Time · marzo 2026</footer></blockquote>
+      <blockquote class="rev"><p>Noche memorable.</p><footer><b>@alberto_herraiz7</b>Vinyl set en Killing Time · febrero 2026</footer></blockquote>
+      <blockquote class="rev"><p>Sesiónaso amigo.</p><footer><b>@flacotrack_</b>DJ · febrero 2026</footer></blockquote>
+      <blockquote class="rev"><p>Mucho ahí valiente.</p><footer><b>@khvinylstore</b>9º aniversario de KH Vinyl Store · julio 2026</footer></blockquote>
+      <blockquote class="rev"><p>Yesssss mucho style.</p><footer><b>@moonlightsshiness</b>Killing Time · julio 2026</footer></blockquote>
+    </div>
+  </section>
+
+  <!-- 08 BOOKING -->
+  <section class="about" id="booking">
+    <div class="bg"><img src="galaxet-pista.webp" alt=""></div>
+    <div class="wrap">
+      <div class="about-grid">
+        <div data-reveal>
+          <p class="eyebrow"><b>09</b> Booking</p>
+          <h2 class="h-xl">Para tu<br>noche<span class="dot"></span></h2>
+          <p class="lede">Una tarde de groove en vinilo o una madrugada de psytek. Tú eliges la hora y el proyecto.</p>
+        </div>
+        <p class="rules" data-reveal>VINILO.<br>ÓRBITA.<br>PISTA.</p>
+      </div>
+
+      <div class="pitch" data-reveal>
+        <p class="pitch-lead">Martín no llega con la sesión cerrada. Llega con <em>discos</em> y con oído: mira a la gente, prueba y sube cuando toca. Si la noche pide más, Galaxet toma el relevo.</p>
+        <p class="pitch-sub">Ha pinchado en Killing Time, 33/45, La Rítmica, Tulum, Amagatall d'Hilari y Calablava Beach Club, en Where Am I Festival y en fiestas de colectivos de Valencia y Murcia. Lo representa BTZ Agency.</p>
+      </div>
+
+      <div class="why" data-reveal>
+        <article><b>01</b><h3>Vinilo de verdad</h3><p>Sets enteros a discos, con todo lo que eso tiene de riesgo y de directo.</p></article>
+        <article><b>02</b><h3>De 125 a 170</h3><p>Del groove de tarde al psytrance de madrugada, con el mismo hilo.</p></article>
+        <article><b>03</b><h3>Hecho en colectivo</h3><p>Fundador de ALPO y parte de la escena de fiestas de Valencia.</p></article>
+        <article><b>04</b><h3>Con agencia</h3><p>Fechas, rider y condiciones a través de BTZ Agency, sin rodeos.</p></article>
+      </div>
+
+      <div class="events" data-reveal>
+        <span class="ui-label">Para tu evento</span>
+        <ul><li>Clubs y salas</li><li>Raves y open air</li><li>Beach clubs</li><li>Fiestas de colectivo</li></ul>
+      </div>
+
+      <div class="stats" data-reveal>
+        <div class="stat"><b>125–170</b><span>BPM entre los dos</span></div>
+        <div class="stat"><b>2</b><span>Proyectos, un DJ</span></div>
+        <div class="stat"><b>BTZ</b><span>Agencia de booking</span></div>
+      </div>
+
+      <div class="book" data-reveal>
+        <div>
+          <h3>¿Tienes fecha?<br><span class="lime">Hablemos.</span></h3>
+          <p>Escribe a BTZ Agency con el día, la ciudad y el proyecto que buscas, y te responden con disponibilidad.</p>
+        </div>
+        <a class="btn" href="mailto:info@btzagency.com?subject=Booking%20Mart%C3%ADn%20Gala%20%2F%20Galaxet">Reservar fecha <span class="ar"><svg viewBox="0 0 12 12" fill="none" stroke-width="1.6"><path d="M1 6h10M7 2l4 4-4 4"/></svg></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 CIERRE -->
+  <section class="creed">
+    <div class="bg"><img src="retrato-naranja.webp" alt=""></div>
+    <div class="wrap" data-reveal>
+      <p class="eyebrow"><b>10</b> Nos vemos</p>
+      <h2 class="h-xl">Groove de tarde,<br>órbita de noche<span class="dot"></span></h2>
+      <div class="btns">
+        <a class="btn" href="#contacto">Contratar <span class="ar"><svg viewBox="0 0 12 12" fill="none" stroke-width="1.6"><path d="M1 6h10M7 2l4 4-4 4"/></svg></span></a>
+        <a class="btn btn-gray" href="https://youtu.be/7GAhKiCe4j4" target="_blank" rel="noopener">Escuchar un set <span class="ar"><svg viewBox="0 0 12 12" fill="none" stroke-width="1.6"><path d="M1 6h10M7 2l4 4-4 4"/></svg></span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contacto">
+  <div class="fmarq" aria-hidden="true">
+    <span>Vinilo</span><span>Groove</span><span>Psytek</span><span>Órbita</span><span>Vinilo</span><span>Groove</span><span>Psytek</span><span>Órbita</span>
+    <span>Vinilo</span><span>Groove</span><span>Psytek</span><span>Órbita</span><span>Vinilo</span><span>Groove</span><span>Psytek</span><span>Órbita</span>
+  </div>
+  <div class="wrap fgrid">
+    <div>
+      <h4>Navegación</h4>
+      <ul><li><a href="#proyectos">Proyectos</a></li><li><a href="#carteles">Carteles</a></li><li><a href="#temporada">Temporada</a></li><li><a href="#galaxet">Galaxet</a></li><li><a href="#galeria">Galería</a></li></ul>
+    </div>
+    <div>
+      <h4>Booking</h4>
+      <ul class="soc">
+        <li><a href="https://www.instagram.com/martingala_galaxet/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:12px"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8"/></svg>Instagram</a></li>
+        <li><a href="https://youtu.be/SVYEW-Ghqxs" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:12px"><svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="4"/><path d="M10 9.5v5l4.5-2.5z"/></svg>YouTube</a></li>
+        <li><a href="https://on.soundcloud.com/Ub6Q0P9smvJv39fJLr" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:12px"><svg viewBox="0 0 24 24"><path d="M3 15v3M6 12v6M9 10v8M12 8v10M15 6v12h4a3 3 0 0 0 0-6 5 5 0 0 0-4-6"/></svg>SoundCloud</a></li>
+        <li><a href="mailto:info@btzagency.com"><small>info@btzagency.com · BTZ Agency</small></a></li>
+      </ul>
+    </div>
+    <div class="loc">
+      <h4>Dónde</h4>
+      <p>Pinchando en</p>
+      <div class="places">RUZAFA · VALÈNCIA<br>MURCIA<br>Y DONDE HAYA PISTA</div>
+    </div>
+  </div>
+  <div class="fbig">
+    <div class="ghost" aria-hidden="true"><span>MARTÍN GALA</span><span>GALAXET</span><span>MARTÍN GALA</span><span>GALAXET</span></div>
+    <div class="ticket">
+      <div class="t1"><b>MARTÍN GALA</b><i>PASE · CABINA</i><span>125—170 BPM</span></div>
+      <h5>Nos vemos<br>en la pista<em>.</em></h5>
+      <div class="t3"><span>VALÈNCIA</span><span>VINILO / 001</span><span>CORTA AQUÍ ✂</span></div>
+    </div>
+  </div>
+  <div class="wrap fbar"><span>Hecho a vinilo.</span><span>© 2026 Martín Gala / Galaxet</span></div>
+</footer>
+
+<div class="cur" id="cur" aria-hidden="true"><div class="orbit"><span></span></div></div>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+  <button class="x" id="lbx" aria-label="Cerrar">✕</button>
+  <figure><img id="lbimg" alt=""><p id="lbcap"></p></figure>
+</div>
+
+<script>
+(() => {
+  document.documentElement.classList.add('js');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // menu
+  const burger = document.getElementById('burger');
+  burger.addEventListener('click', () => {
+    const o = document.body.classList.toggle('menu-open');
+    burger.setAttribute('aria-expanded', o);
+  });
+  document.querySelectorAll('#menu a').forEach(a => a.addEventListener('click', () => {
+    document.body.classList.remove('menu-open'); burger.setAttribute('aria-expanded', false);
+  }));
+
+  // hero letters
+  let k = 0;
+  document.querySelectorAll('[data-split]').forEach(r => {
+    r.setAttribute('aria-hidden', 'true');
+    r.innerHTML = [...r.textContent].map(c => `<span class="ch" style="--i:${k++}">${c}</span>`).join('');
+  });
+
+  // hero: vídeo con sonido + modo Martín Gala / Galaxet
+  const root = document.documentElement;
+  const vids = {mg: document.getElementById('vidMg'), gx: document.getElementById('vidGx')};
+  const sound = document.getElementById('sound'), lbl = sound.querySelector('.lbl'), time = document.getElementById('time');
+  const lede = document.getElementById('heroLede'), playTxt = document.getElementById('playTxt');
+  const segs = [...document.querySelectorAll('.segb')];
+  const reels = [...document.querySelectorAll('[data-autoplay]')];
+  const MODES = {
+    mg: {lede:'Techno, groove y house. Muchas veces, solo vinilo.', play:'Toca para escuchar a Martín Gala'},
+    gx: {lede:'Psytrance, tekno y psytek. Para cuando la noche pide más.', play:'Toca para escuchar a Galaxet'}
+  };
+  let mode = 'mg', loud = false;
+  const hero = () => vids[mode];
+  const muteReels = except => reels.forEach(v => { if (v !== except) { v.muted = true; v.closest('.reel')?.classList.remove('loud'); v.closest('.reel')?.querySelector('.mute')?.setAttribute('aria-pressed', false); } });
+  const setHeroSound = on => {
+    loud = on;
+    Object.values(vids).forEach(v => v.muted = true);
+    hero().muted = !on;
+    if (on) { hero().play().catch(()=>{}); muteReels(); }
+    sound.classList.toggle('on', on);
+    sound.setAttribute('aria-pressed', on);
+    lbl.textContent = on ? 'SONIDO ON' : 'SONIDO OFF';
+  };
+  const setMode = m => {
+    if (m === mode) return;
+    const prev = hero(); mode = m; const d = MODES[m];
+    if (m === 'gx') root.dataset.mode = 'gx'; else delete root.dataset.mode;
+    lede.textContent = d.lede; playTxt.textContent = d.play;
+    segs.forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === m));
+    Object.entries(vids).forEach(([k, el]) => el.classList.toggle('on', k === m));
+    hero().play().catch(()=>{});
+    setHeroSound(loud);
+    setTimeout(() => { if (prev !== hero()) prev.pause(); }, 900);
+  };
+  segs.forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode)));
+  sound.addEventListener('click', () => setHeroSound(!loud));
+  document.getElementById('play').addEventListener('click', () => {
+    setHeroSound(true);
+    if (hero().getBoundingClientRect().bottom < 0) scrollTo({top:0, behavior:'smooth'});
+  });
+  Object.values(vids).forEach(v => v.addEventListener('timeupdate', () => {
+    if (v !== hero()) return;
+    const s = Math.floor(v.currentTime);
+    time.textContent = String(Math.floor(s/60)).padStart(2,'0') + ':' + String(s%60).padStart(2,'0');
+  }));
+  const kick = () => {
+    if (hero().paused) hero().play().catch(()=>{});
+    reels.forEach(v => { const r = v.getBoundingClientRect(); if (r.bottom > 0 && r.top < innerHeight && v.paused) v.play().catch(()=>{}); });
+  };
+  vids.mg.muted = true; vids.mg.play().catch(()=>{});
+  ['touchstart','scroll','click'].forEach(ev => addEventListener(ev, kick, {passive:true}));
+  setTimeout(kick, 1500);
+
+  // vídeo de proyecto con sonido
+  document.querySelectorAll('.reel .mute').forEach(b => b.addEventListener('click', () => {
+    const card = b.closest('.reel'), v = card.querySelector('video'); if (!v) return;
+    const on = v.muted;
+    muteReels(v);
+    if (on) { setHeroSound(false); v.muted = false; v.play().catch(()=>{}); } else v.muted = true;
+    card.classList.toggle('loud', on);
+    b.setAttribute('aria-pressed', on);
+  }));
+
+  // onda animada
+  const wave = document.getElementById('wave');
+  let t = 0;
+  const draw = () => {
+    const amp = loud ? 13 : 4, fast = mode === 'gx';
+    let d = 'M0 17';
+    for (let x = 0; x <= 340; x += 4) {
+      const a = amp * Math.sin(x*0.09 + t) * Math.sin(x*0.021 - t*0.6) * (0.4 + 0.6*Math.abs(Math.sin(x*0.013 + t*0.3)));
+      d += ` L${x} ${(17 + a).toFixed(1)}`;
+    }
+    wave.setAttribute('d', d);
+    t += (loud ? 0.12 : 0.04) * (fast ? 1.4 : 1);
+    if (!reduce) requestAnimationFrame(draw);
+  };
+  draw();
+
+  // autoplay reels in view, pause out of view
+  if ('IntersectionObserver' in window) {
+    const vo = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) e.target.play().catch(()=>{}); else e.target.pause();
+    }), {threshold: .25});
+    reels.forEach(v => vo.observe(v));
+
+    // reveal (only for elements below the fold at load)
+    const ro = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.remove('pre'); ro.unobserve(e.target); }
+    }), {threshold: .12, rootMargin: '0px 0px -40px 0px'});
+    if (!reduce && matchMedia('(hover:hover) and (pointer:fine)').matches) {
+      document.querySelectorAll('[data-reveal]').forEach(el => {
+        if (el.getBoundingClientRect().top > innerHeight) { el.classList.add('pre'); ro.observe(el); }
+      });
+      setTimeout(() => document.querySelectorAll('.pre').forEach(el => el.classList.remove('pre')), 6000);
+    }
+  } else reels.forEach(v => v.play().catch(()=>{}));
+
+  // custom cursor: glowing lime trail + orbit on links
+  if (matchMedia('(hover:hover) and (pointer:fine)').matches && !reduce) {
+    const cur = document.getElementById('cur'), orbit = cur.querySelector('.orbit');
+    const N = 20, pts = [];
+    for (let i = 0; i < N; i++) {
+      const d = document.createElement('i');
+      const sz = 26 - i * 1.19;
+      d.style.width = d.style.height = sz + 'px';
+      d.style.margin = (-sz/2) + 'px 0 0 ' + (-sz/2) + 'px';
+      d.style.opacity = (0.6 - i * 0.028).toFixed(3);
+      d.style.filter = `blur(${(i * 0.29).toFixed(2)}px)`;
+      cur.appendChild(d); pts.push({el:d, x:-100, y:-100});
+    }
+    let mx = -100, my = -100, shown = false;
+    document.documentElement.classList.add('has-cur');
+    addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; if (!shown) { shown = true; pts.forEach(p => { p.x = mx; p.y = my; }); } }, {passive:true});
+    document.addEventListener('mouseleave', () => cur.style.opacity = 0);
+    document.addEventListener('mouseenter', () => cur.style.opacity = 1);
+    document.addEventListener('mouseover', e => cur.classList.toggle('hot', !!e.target.closest('a,button,[data-lb],.panel,video')));
+    const loop = () => {
+      let x = mx, y = my;
+      pts.forEach((p, i) => {
+        p.x += (x - p.x) * (i ? 0.42 : 1); p.y += (y - p.y) * (i ? 0.42 : 1);
+        p.el.style.transform = `translate3d(${p.x}px,${p.y}px,0)`;
+        x = p.x; y = p.y;
+      });
+      orbit.style.left = mx + 'px'; orbit.style.top = my + 'px';
+      requestAnimationFrame(loop);
+    };
+    loop();
+  }
+
+  // lightbox
+  const lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg'), lbcap = document.getElementById('lbcap');
+  let last = null;
+  const open = el => {
+    last = el; lbimg.src = el.dataset.lb; lbimg.alt = el.dataset.cap || ''; lbcap.textContent = el.dataset.cap || '';
+    lb.classList.add('open'); document.getElementById('lbx').focus();
+  };
+  const close = () => { lb.classList.remove('open'); last?.focus(); };
+  document.querySelectorAll('[data-lb]').forEach(el => {
+    el.addEventListener('click', () => open(el));
+    el.addEventListener('keydown', e => { if (e.key === 'Enter' && el.tagName === 'FIGURE') open(el); });
+  });
+  document.getElementById('lbx').addEventListener('click', close);
+  lb.addEventListener('click', e => { if (e.target === lb) close(); });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && lb.classList.contains('open')) close(); });
+
+  // 03 coverflow
+  (() => {
+    const stage = document.getElementById('cfStage'); if (!stage) return;
+    const cards = [...stage.querySelectorAll('.cf-card')], n = cards.length;
+    const data = [
+      {t:'SSN 001', m:'33/45 · VALÈNCIA<br>VIERNES 19 JUNIO · 22:00 — 03:30', p:'La primera SSN, con Martín Gala, Elevens y Neønexus. Entrada gratuita con RSVP.', cap:'SSN 001 · 33/45'},
+      {t:'ALPO × Tulum', m:'DISCOTECA TULUM · VALÈNCIA<br>07 AGOSTO 2026 · COMO GALAXET', p:'ALPO Collective con Primal Motion y Vant. House, techno, trance y psytrance.', cap:'ALPO × Primal Motion × Vant · Tulum'},
+      {t:'Cuerpos en fuga', m:'33/45 CLUB · VALÈNCIA<br>03 OCTUBRE 2026 · AFTERPARTY', p:'Orange Juice by ALPO cierra la exposición con house, minimal y techno. Martín Gala b2b Yeeza.', cap:'Afterparty Cuerpos en fuga · 33/45'},
+      {t:'Ficha de artista', m:'BTZ AGENCY<br>HOUSE · TECHNO · PSYTRANCE · 125–170 BPM', p:'Su carta de presentación en la agencia que lleva sus fechas.', cap:'Martín Gala · BTZ Agency'}
+    ];
+    const txt = document.getElementById('cfTxt'), num = document.getElementById('cfNum'), ti = document.getElementById('cfTitle'),
+          me = document.getElementById('cfMeta'), pp = document.getElementById('cfText'), bar = document.getElementById('cfBar');
+    let cur = 0, drag = 0, tx = 0, ty = 0;
+    const off = i => { let o = i - cur; if (o > n/2) o -= n; if (o < -n/2) o += n; return o; };
+    const render = () => {
+      const w = stage.clientWidth || 600;
+      cards.forEach((c, i) => {
+        const o = off(i) + drag / (w * .45);
+        const a = Math.min(Math.abs(o), 1.6);
+        const on = Math.abs(off(i)) === 0 && !drag;
+        const rx = on ? -ty * 10 : 0, ry = on ? tx * 14 : 0;
+        c.style.transform = `translate(-50%,-50%) translateX(${o * 64}%) translateZ(${-a * 220}px) rotateY(${-o * 36 + ry}deg) rotateX(${rx}deg) scale(${1 - a * .14})`;
+        c.style.zIndex = 10 - Math.round(a * 3);
+        c.style.opacity = a > 1.4 ? 0 : 1 - a * .35;
+        c.style.filter = `brightness(${1 - a * .45}) saturate(${1 - a * .3})`;
+        c.classList.toggle('on', on);
+      });
+    };
+    const info = () => {
+      txt.classList.add('swap');
+      setTimeout(() => {
+        const d = data[cur]; num.textContent = String(cur + 1).padStart(2, '0');
+        ti.textContent = d.t; me.innerHTML = d.m; pp.textContent = d.p; txt.classList.remove('swap');
+      }, 260);
+      bar.style.width = ((cur + 1) / n * 100) + '%';
+    };
+    const go = k => { cur = (k + n) % n; drag = 0; render(); info(); };
+    const big = () => open({dataset:{lb: cards[cur].querySelector('img').getAttribute('src'), cap: data[cur].cap}, focus(){}});
+    document.getElementById('cfPrev').onclick = () => { go(cur - 1); hold(); };
+    document.getElementById('cfNext').onclick = () => { go(cur + 1); hold(); };
+    document.getElementById('cfOpen').onclick = big;
+    stage.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') go(cur - 1); if (e.key === 'ArrowRight') go(cur + 1); if (e.key === 'Enter') big(); });
+    let sx = null, sy = 0, moved = 0;
+    stage.addEventListener('pointerdown', e => { sx = e.clientX; sy = e.clientY; moved = 0; stage.setPointerCapture(e.pointerId); hold(); });
+    stage.addEventListener('pointermove', e => {
+      if (sx !== null) {
+        const dx = e.clientX - sx;
+        if (Math.abs(dx) > 6) { moved = 1; stage.classList.add('drag'); drag = dx; render(); }
+      } else if (e.pointerType === 'mouse') {
+        const r = stage.getBoundingClientRect();
+        tx = (e.clientX - r.left) / r.width - .5; ty = (e.clientY - r.top) / r.height - .5;
+        cards[cur].style.setProperty('--gx2', ((tx + .5) * 100) + '%'); cards[cur].style.setProperty('--gy2', ((ty + .5) * 100) + '%');
+        render();
+      }
+    });
+    const end = e => {
+      if (sx === null) return;
+      const dx = e.clientX - sx; sx = null; stage.classList.remove('drag');
+      if (!moved) {
+        const hit = cards.findIndex(c => c.contains(document.elementFromPoint(e.clientX, e.clientY)));
+        if (hit === cur) big(); else if (hit > -1) go(hit); else { drag = 0; render(); }
+      } else if (dx < -60) go(cur + 1); else if (dx > 60) go(cur - 1); else { drag = 0; render(); }
+    };
+    stage.addEventListener('pointerup', end); stage.addEventListener('pointercancel', end);
+    stage.addEventListener('mouseleave', () => { tx = ty = 0; render(); });
+    let timer, paused = 0;
+    const hold = () => { paused = Date.now(); };
+    if (!reduce) timer = setInterval(() => {
+      const r = stage.getBoundingClientRect();
+      if (Date.now() - paused > 7000 && r.top < innerHeight && r.bottom > 0 && !stage.matches(':hover') && !document.getElementById('lb').classList.contains('open')) go(cur + 1);
+    }, 4500);
+    addEventListener('resize', render);
+    render();
+  })();
+
+  // 05 deck of cards
+  (() => {
+    const deck = document.getElementById('deck'); if (!deck) return;
+    let order = [...deck.querySelectorAll('.dk')];
+    const rots = [0, 5, -6, 3], numEl = document.getElementById('dkNum'), total = order.length;
+    let shown = 0;
+    const layout = () => {
+      order.forEach((c, k) => {
+        c.classList.toggle('top', k === 0);
+        c.style.zIndex = total - k;
+        c.style.transform = `translate(${k * 14}px, ${k * -12}px) rotate(${rots[k] || 0}deg) scale(${1 - k * .05})`;
+        c.style.opacity = k > 3 ? 0 : 1;
+        const v = c.querySelector('video'); if (v) { if (k === 0) v.play().catch(()=>{}); }
+      });
+      numEl.textContent = String(shown % total + 1).padStart(2, '0');
+    };
+    const fly = dir => {
+      const c = order[0];
+      c.style.transform = `translate(${dir * 130}%, -6%) rotate(${dir * 28}deg)`; c.style.opacity = 0;
+      setTimeout(() => {
+        order.push(order.shift()); shown++;
+        c.style.transition = 'none'; c.style.zIndex = 0; layout();
+        requestAnimationFrame(() => requestAnimationFrame(() => { c.style.transition = ''; c.style.opacity = 1; }));
+      }, 380);
+    };
+    const back = () => {
+      const c = order.pop(); order.unshift(c); shown = (shown - 1 + total) % total;
+      c.style.transition = 'none'; c.style.transform = 'translate(-130%, -6%) rotate(-28deg)'; c.style.opacity = 0; c.style.zIndex = total + 1;
+      requestAnimationFrame(() => requestAnimationFrame(() => { c.style.transition = ''; layout(); }));
+    };
+    document.getElementById('dkNext').onclick = () => fly(1);
+    document.getElementById('dkPrev').onclick = back;
+    let sx = null, sy = 0, dx = 0, dy = 0, moved = 0;
+    deck.addEventListener('pointerdown', e => {
+      if (e.target.closest('button')) return;
+      sx = e.clientX; sy = e.clientY; dx = dy = 0; moved = 0; deck.setPointerCapture(e.pointerId);
+    });
+    deck.addEventListener('pointermove', e => {
+      if (sx === null) return;
+      dx = e.clientX - sx; dy = e.clientY - sy;
+      if (Math.abs(dx) > 6) { moved = 1; deck.classList.add('drag'); order[0].style.transform = `translate(${dx}px, ${dy * .25}px) rotate(${dx / 16}deg)`; }
+    });
+    const end = () => {
+      if (sx === null) return; sx = null; deck.classList.remove('drag');
+      if (!moved) { const c = order[0]; if (c.dataset.src) open({dataset:{lb:c.dataset.src, cap:c.dataset.cap}, focus(){}}); return; }
+      if (Math.abs(dx) > 90) fly(Math.sign(dx)); else layout();
+    };
+    deck.addEventListener('pointerup', end); deck.addEventListener('pointercancel', end);
+    layout();
+  })();
+
+  // 02 reels: expand on hover + tilt; phone: swipe with depth
+  (() => {
+    const box = document.getElementById('reels'); if (!box) return;
+    const rs = [...box.querySelectorAll('.reel')], dots = [...document.querySelectorAll('#reelDots i')];
+    const fine = matchMedia('(hover:hover) and (pointer:fine)');
+    const act = el => rs.forEach(r => r.classList.toggle('act', r === el));
+    act(rs[0]);
+    rs.forEach(r => {
+      r.addEventListener('mouseenter', () => { if (fine.matches) act(r); });
+      r.addEventListener('click', e => { if (!e.target.closest('button')) act(r); });
+      r.addEventListener('mousemove', e => {
+        if (!fine.matches || !r.classList.contains('act')) return;
+        const b = r.getBoundingClientRect(), x = (e.clientX - b.left) / b.width - .5, y = (e.clientY - b.top) / b.height - .5;
+        r.style.transform = `rotateY(${x * 8}deg) rotateX(${-y * 6}deg) translateZ(10px)`;
+        r.style.setProperty('--mx', (x + .5) * 100 + '%'); r.style.setProperty('--my', (y + .5) * 100 + '%');
+      });
+      r.addEventListener('mouseleave', () => { r.style.transform = ''; });
+    });
+    const onScroll = () => {
+      if (fine.matches || box.scrollWidth <= box.clientWidth + 4) { rs.forEach(r => { if (!fine.matches) r.style.transform = ''; }); return; }
+      const c = box.getBoundingClientRect(), mid = c.left + c.width / 2; let best = 0, bd = 1e9;
+      rs.forEach((r, i) => {
+        const b = r.getBoundingClientRect(), d = (b.left + b.width / 2 - mid) / b.width;
+        if (Math.abs(d) < bd) { bd = Math.abs(d); best = i; }
+        const a = Math.min(Math.abs(d), 1);
+        r.style.transform = `rotateY(${-d * 18}deg) scale(${1 - a * .1})`;
+        r.style.opacity = 1 - a * .35;
+      });
+      dots.forEach((dt, i) => dt.classList.toggle('on', i === best));
+      act(rs[best]);
+    };
+    box.addEventListener('scroll', onScroll, {passive:true}); addEventListener('resize', onScroll); onScroll();
+  })();
+
+  // 06 studio compare slider
+  (() => {
+    const c = document.getElementById('cmp'); if (!c) return;
+    let p = 50, dragging = false;
+    const set = v => { p = Math.max(3, Math.min(97, v)); c.style.setProperty('--p', p + '%'); c.setAttribute('aria-valuenow', Math.round(p)); };
+    const at = e => { const b = c.getBoundingClientRect(); set((e.clientX - b.left) / b.width * 100); };
+    c.addEventListener('pointerdown', e => { dragging = true; c.setPointerCapture(e.pointerId); at(e); });
+    c.addEventListener('pointermove', e => { if (dragging) at(e); });
+    c.addEventListener('pointerup', () => dragging = false); c.addEventListener('pointercancel', () => dragging = false);
+    c.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') set(p - 5); if (e.key === 'ArrowRight') set(p + 5); });
+    if (!reduce && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver(es => es.forEach(en => {
+        if (!en.isIntersecting) return; io.disconnect();
+        const seq = [50, 22, 78, 50]; let k = 0, t0 = null;
+        const step = ts => {
+          if (dragging) return; if (t0 === null) t0 = ts;
+          const f = Math.min((ts - t0) / 700, 1), e2 = f < .5 ? 2*f*f : 1 - Math.pow(-2*f + 2, 2) / 2;
+          set(seq[k] + (seq[k+1] - seq[k]) * e2);
+          if (f === 1) { k++; t0 = null; if (k >= seq.length - 1) return; }
+          requestAnimationFrame(step);
+        };
+        setTimeout(() => requestAnimationFrame(step), 400);
+      }), {threshold: .5});
+      io.observe(c);
+    }
+  })();
+
+
+  // 07 gallery items
+  (() => {
+    const tr = document.getElementById('galTrack'); if (!tr) return;
+    const items = [
+      ['retrato-azul','Mirando arriba','Martín Gala mirando hacia arriba con la mano en el cuello'],
+      ['duo-vinilo','Orange Juice','Martín Gala junto a otro DJ de Orange Juice en la cabina de vinilos'],
+      ['vinilo-laritmica','La Rítmica','Martín Gala pinchando vinilos de día'],
+      ['retrato-naranja','Pañuelo','Martín Gala sonriendo con pañuelo y gafas rojas sobre fondo naranja'],
+      ['galaxet-cascos','Galaxet','Galaxet con los cascos en Amagatall'],
+      ['retrato-chandal','Chándal','Martín Gala de cuclillas con gorra amarilla y chaqueta de chándal'],
+      ['verano-gafas','Gafas','Martín Gala bajándose las gafas de sol'],
+      ['blur-fiesta','La fiesta','Foto movida de gente bailando con luz amarilla'],
+      ['retrato-camisa','Camisa','Martín Gala con camisa estampada sobre fondo verde azulado'],
+      ['verano-pose','Verano 2026','Martín Gala con camisa verde agua y gafas en la cabeza'],
+      ['retrato-bn','Blanco y negro','Martín Gala tapándose un ojo en blanco y negro']
+    ];
+    const fig = ([f, c, alt], i, hide) => `<figure class="gi"${hide ? ' aria-hidden="true"' : ''} data-src="${f}.webp" data-cap="${c}"><img src="${f}.webp" alt="${alt}" draggable="false"><figcaption><b>${String(i+1).padStart(2,'0')}</b> ${c.toUpperCase()}</figcaption></figure>`;
+    tr.innerHTML = items.map((it, i) => fig(it, i, false)).join('') + items.map((it, i) => fig(it, i, true)).join('');
+  })();
+
+  // 07 gallery: drifting strip, drag with inertia, skew by speed
+  (() => {
+    const gal = document.getElementById('gal'), tr = document.getElementById('galTrack'); if (!gal) return;
+    let x = 0, v = 0, auto = reduce ? 0 : -0.45, drag = false, lx = 0, moved = 0, sk = 0, startX = 0;
+    const half = () => tr.scrollWidth / 2;
+    gal.addEventListener('pointerdown', e => { drag = true; moved = 0; lx = startX = e.clientX; v = 0; gal.classList.add('drag'); gal.setPointerCapture(e.pointerId); });
+    gal.addEventListener('pointermove', e => { if (!drag) return; const dx = e.clientX - lx; lx = e.clientX; x += dx; v = dx; if (Math.abs(e.clientX - startX) > 6) moved = 1; });
+    const end = e => {
+      if (!drag) return; drag = false; gal.classList.remove('drag');
+      if (!moved) { const f = document.elementFromPoint(e.clientX, e.clientY)?.closest('.gi'); if (f) open({dataset:{lb:f.dataset.src, cap:f.dataset.cap}, focus(){}}); }
+    };
+    gal.addEventListener('pointerup', end); gal.addEventListener('pointercancel', end);
+    let hover = false; gal.addEventListener('mouseenter', () => hover = true); gal.addEventListener('mouseleave', () => hover = false);
+    const loop = () => {
+      if (!drag) { v *= .94; x += v + (hover ? auto * .3 : auto); }
+      const h = half(); if (h) { if (x < -h) x += h; if (x > 0) x -= h; }
+      sk += ((Math.max(-12, Math.min(12, v * .6))) - sk) * .15;
+      tr.style.transform = `translate3d(${x}px,0,0)`;
+      tr.style.setProperty('--sk', sk.toFixed(2) + 'deg');
+      requestAnimationFrame(loop);
+    };
+    loop();
+  })();
+})();
+</script>
+
+</body></html>
+</body>
+</html>
