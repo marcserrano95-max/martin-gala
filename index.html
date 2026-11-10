@@ -541,6 +541,36 @@ a.mute{color:inherit}
 .rev.big p{font-size:clamp(48px,5.2vw,84px);line-height:.88}
 @media (max-width:1100px){.revs{grid-template-columns:1fr 1fr}.rev.big{grid-row:auto}}
 @media (max-width:760px){.revs{grid-template-columns:1fr}.rev.big{grid-column:auto}.rev.big p{font-size:52px}}
+
+/* arma tu noche */
+.planner{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:14px;align-items:stretch}
+.pl-q{display:flex;flex-direction:column;gap:14px}
+.pl-g{border:1px solid var(--line);background:var(--ink);padding:20px 22px 22px;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.pl-g legend{float:left;width:100%;font-family:var(--display);font-size:26px;letter-spacing:.02em;margin-bottom:12px;display:flex;align-items:center;gap:12px}
+.pl-g legend b{font-weight:400;width:30px;height:30px;border:1px solid var(--lime);color:var(--lime);display:grid;place-items:center;font-size:18px;padding-top:2px}
+.pl-g button{font-family:var(--display);font-size:20px;letter-spacing:.04em;padding:10px 14px 8px;border:1px solid var(--line);color:var(--fg);text-align:left;line-height:1;transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease)}
+.pl-g button small{display:block;font-family:var(--body);font-weight:300;font-size:15px;letter-spacing:.02em;color:var(--mute);margin-top:4px}
+.pl-g button:hover{border-color:var(--lime)}
+.pl-g button[aria-pressed=true]{background:var(--lime);border-color:var(--lime);color:var(--bg)}
+.pl-g button[aria-pressed=true] small{color:rgba(8,8,8,.7)}
+.pl-r{border:1px solid var(--lime);background:var(--ink);display:flex;flex-direction:column;transition:border-color .5s var(--ease)}
+.pl-r.gx{--lime:#b98bff;--acc-rgb:185,139,255}
+.pl-img{margin:0;aspect-ratio:16/10;overflow:hidden;position:relative}
+.pl-img img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;transition:opacity .4s var(--ease)}
+.pl-img img.swap{opacity:0}
+.pl-body{padding:22px 24px 24px;display:flex;flex-direction:column;gap:14px;flex:1}
+.pl-body .ui-label{color:var(--lime);font-size:15px}
+.pl-body h3{font-family:var(--display);font-weight:400;font-size:clamp(48px,5vw,76px);line-height:.85;color:var(--lime)}
+.pl-specs{display:grid;grid-template-columns:auto 1fr;border-top:1px solid var(--line)}
+.pl-specs dt,.pl-specs dd{padding:9px 0;border-bottom:1px solid var(--line)}
+.pl-specs dt{font-size:16px;color:var(--mute);padding-right:16px}
+.pl-specs dd{font-family:var(--display);font-size:23px;line-height:1.05;text-align:right}
+.pl-ref{font-family:var(--body);font-weight:300;font-size:18px;color:var(--fg-80)}
+.pl-ref span{display:block;color:var(--mute);font-size:15px}
+.pl-ref b{font-weight:400;color:var(--fg)}
+.pl-body .btn{align-self:flex-start;margin-top:auto;height:48px;font-size:21px}
+@media (max-width:1100px){.planner{grid-template-columns:1fr}}
+@media (max-width:760px){.pl-g{padding:16px}.pl-g button{flex:1 1 calc(50% - 8px)}.pl-body .btn{width:100%}}
 @media (max-width:1100px){.season{grid-template-columns:1fr 1fr}}
 @media (max-width:760px){
   .season{grid-template-columns:1fr}
@@ -563,7 +593,7 @@ a.mute{color:inherit}
 <header class="nav">
   <a href="#top" class="logo" aria-label="Martín Gala, inicio">Martín Gala</a>
   <nav class="links ui-label" aria-label="Principal">
-    <a href="#proyectos">Proyectos</a><a href="#carteles">Carteles</a><a href="#temporada">Temporada</a><a href="#galaxet">Galaxet</a><a href="#resenas">Reseñas</a><a href="#booking">Booking</a>
+    <a href="#proyectos">Proyectos</a><a href="#carteles">Carteles</a><a href="#temporada">Temporada</a><a href="#galaxet">Galaxet</a><a href="#noche">Tu noche</a><a href="#resenas">Reseñas</a><a href="#booking">Booking</a>
   </nav>
   <div class="nav-r">
     <a class="btn btn-gray" href="#contacto">Contratar <span class="ar"><svg viewBox="0 0 12 12" fill="none" stroke-width="1.6"><path d="M1 6h10M7 2l4 4-4 4"/></svg></span></a>
@@ -574,7 +604,7 @@ a.mute{color:inherit}
   </div>
 </header>
 <div class="menu" id="menu">
-  <a class="big" href="#proyectos">Proyectos</a><a class="big" href="#carteles">Carteles</a><a class="big" href="#temporada">Temporada</a><a class="big" href="#galaxet">Galaxet</a><a class="big" href="#galeria">Galería</a><a class="big" href="#resenas">Reseñas</a><a class="big" href="#sobre">Quién es</a><a class="big" href="#booking">Booking</a>
+  <a class="big" href="#proyectos">Proyectos</a><a class="big" href="#carteles">Carteles</a><a class="big" href="#temporada">Temporada</a><a class="big" href="#galaxet">Galaxet</a><a class="big" href="#noche">Tu noche</a><a class="big" href="#galeria">Galería</a><a class="big" href="#resenas">Reseñas</a><a class="big" href="#sobre">Quién es</a><a class="big" href="#booking">Booking</a>
   <a class="btn" style="margin-top:24px;align-self:flex-start" href="#contacto">Contratar <span class="ar"><svg viewBox="0 0 12 12" fill="none" stroke-width="1.6"><path d="M1 6h10M7 2l4 4-4 4"/></svg></span></a>
 </div>
 
@@ -659,7 +689,7 @@ a.mute{color:inherit}
         <h2 class="h-xl">Cada uno<br>con su pista<span class="dot"></span></h2>
       </div>
       <div class="side" data-reveal>
-        <p class="lede">Martín Gala y Galaxet. Mismo DJ, distinta energía. Pasa por encima para abrir cada uno.</p>
+        <p class="lede">Martín Gala y Galaxet. Mismo DJ, distinta energía. Toca el altavoz para escuchar cada uno.</p>
       </div>
     </div>
     <div class="reels" id="reels">
@@ -669,9 +699,9 @@ a.mute{color:inherit}
           <button class="mute" aria-label="Activar sonido del vídeo de Martín Gala" aria-pressed="false"><svg class="off" viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M17 9l5 6M22 9l-5 6"/></svg><svg class="on" viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M17 8a5 5 0 0 1 0 8M19.5 5.5a8.5 8.5 0 0 1 0 13"/></svg></button></div>
       </article>
       <article class="reel proj proj-gx" data-reveal>
-        <img src="galaxet-amagatall.webp" alt="Galaxet pinchando en Amagatall d'Hilari" style="object-position:55% 40%">
+        <video muted loop playsinline webkit-playsinline preload="metadata" poster="hero-gx.jpg" data-autoplay><source src="hero-gx.mp4" type="video/mp4"></video>
         <div class="cap"><div><span class="ui-label">Proyecto 02 · 145–170 BPM</span><h3>Galaxet</h3><p class="pg">Psytrance · Tekno · Psytek</p></div>
-          <a class="mute" href="https://www.instagram.com/martingala_galaxet/" target="_blank" rel="noopener" aria-label="Ver Galaxet en Instagram"><svg viewBox="0 0 24 24"><path d="M7 5v14l12-7z"/></svg></a></div>
+          <button class="mute" aria-label="Activar sonido del vídeo de Galaxet" aria-pressed="false"><svg class="off" viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M17 9l5 6M22 9l-5 6"/></svg><svg class="on" viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M17 8a5 5 0 0 1 0 8M19.5 5.5a8.5 8.5 0 0 1 0 13"/></svg></button></div>
       </article>
     </div>
     <div class="reel-dots" id="reelDots" aria-hidden="true"><i class="on"></i><i></i></div>
@@ -776,21 +806,44 @@ a.mute{color:inherit}
     </div>
   </section>
 
-  <!-- 06 DOS CARAS -->
-  <section class="sec wrap" id="caras">
-    <div class="studio">
-      <div class="studio-txt" data-reveal>
-        <div><p class="eyebrow"><b>07</b> Dos caras</p>
-        <h2 class="h-xl">Elige<br>con quién bailas<span class="dot"></span></h2></div>
-        <div><p class="lede">La misma sesión de fotos, dos personajes. Arrastra la línea para pasar de uno a otro.</p>
-        <p class="swipe-hint"><span>←</span> Arrastra la línea <span>→</span></p></div>
+  <!-- ARMA TU NOCHE -->
+  <section class="sec wrap" id="noche">
+    <div class="head">
+      <div data-reveal>
+        <p class="eyebrow"><b>07</b> Tu noche</p>
+        <h2 class="h-xl">Arma<br>tu noche<span class="dot"></span></h2>
       </div>
-      <div class="cmp" id="cmp" data-reveal role="slider" tabindex="0" aria-label="Compara a Martín Gala y Galaxet" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
-        <img src="retrato-vinilo.webp" alt="Martín Gala con los cables de los cascos junto al plato" draggable="false">
-        <div class="cmp-b"><img src="retrato-cables.webp" alt="Galaxet mirando a cámara con las manos sobre los cables" draggable="false"></div>
-        <span class="cmp-tag l">MARTÍN GALA</span><span class="cmp-tag r">GALAXET</span>
-        <div class="cmp-line"><span class="cmp-knob"><svg viewBox="0 0 24 24"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></span></div>
+      <div class="side" data-reveal>
+        <p class="lede">Cuéntanos tu evento en tres toques. Te decimos qué proyecto encaja, a qué BPM y con qué formato, y pides la fecha con todo ya escrito.</p>
       </div>
+    </div>
+    <div class="planner" data-reveal>
+      <div class="pl-q">
+        <fieldset class="pl-g" data-k="ev"><legend><b>1</b>¿Qué evento es?</legend>
+          <button type="button" data-v="club" aria-pressed="true">Club o sala</button><button type="button" data-v="rave" aria-pressed="false">Rave u open air</button><button type="button" data-v="beach" aria-pressed="false">Terraza o beach club</button><button type="button" data-v="colectivo" aria-pressed="false">Fiesta de colectivo</button><button type="button" data-v="privado" aria-pressed="false">Evento privado</button>
+        </fieldset>
+        <fieldset class="pl-g" data-k="h"><legend><b>2</b>¿A qué hora?</legend>
+          <button type="button" data-v="tarde" aria-pressed="false">Tarde<small>17–22 h</small></button><button type="button" data-v="noche" aria-pressed="true">Noche<small>22–02 h</small></button><button type="button" data-v="madrugada" aria-pressed="false">Madrugada<small>02–06 h</small></button><button type="button" data-v="toda" aria-pressed="false">De principio a fin<small>tarde → cierre</small></button>
+        </fieldset>
+        <fieldset class="pl-g" data-k="e"><legend><b>3</b>¿Qué energía buscas?</legend>
+          <button type="button" data-v="groove" aria-pressed="false">Groove<small>bailar sin prisa</small></button><button type="button" data-v="subir" aria-pressed="true">Ir a más<small>subir poco a poco</small></button><button type="button" data-v="tope" aria-pressed="false">A tope<small>sin frenos</small></button>
+        </fieldset>
+      </div>
+      <article class="pl-r" id="plR" aria-live="polite">
+        <figure class="pl-img"><img id="plImg" src="vinilo-laritmica.webp" alt=""></figure>
+        <div class="pl-body">
+          <span class="ui-label">Tu noche encaja con</span>
+          <h3 id="plName">Martín Gala</h3>
+          <dl class="pl-specs">
+            <dt>BPM</dt><dd id="plBpm">126–132</dd>
+            <dt>Sonido</dt><dd id="plSound">Techno con groove</dd>
+            <dt>Formato</dt><dd id="plFmt">Vinyl set</dd>
+            <dt>Duración</dt><dd id="plDur">2 horas</dd>
+          </dl>
+          <p class="pl-ref"><span>Ya lo ha hecho en</span><b id="plRef">Killing Time · 33/45</b></p>
+          <a class="btn" id="plMail" href="mailto:info@btzagency.com">Pedir esta fecha <span class="ar"><svg viewBox="0 0 12 12" fill="none" stroke-width="1.6"><path d="M1 6h10M7 2l4 4-4 4"/></svg></span></a>
+        </div>
+      </article>
     </div>
   </section>
 
@@ -829,7 +882,7 @@ a.mute{color:inherit}
 
       <div class="pitch" data-reveal>
         <p class="pitch-lead">Martín no llega con la sesión cerrada. Llega con <em>discos</em> y con oído: mira a la gente, prueba y sube cuando toca. Si la noche pide más, Galaxet toma el relevo.</p>
-        <p class="pitch-sub">Ha pinchado en Killing Time, 33/45, La Rítmica, Tulum, Amagatall d'Hilari y Calablava Beach Club, en Where Am I Festival y en fiestas de colectivos de Valencia y Murcia. Lo representa BTZ Agency.</p>
+        <p class="pitch-sub">Ha pinchado en Killing Time, 33/45, La Rítmica, Tulum, Amagatall d'Hilari y Calablava Beach Club, y en fiestas de colectivos de Valencia y Murcia. Lo representa BTZ Agency.</p>
       </div>
 
       <div class="why" data-reveal>
@@ -1314,6 +1367,58 @@ a.mute{color:inherit}
       requestAnimationFrame(loop);
     };
     loop();
+  })();
+
+  // arma tu noche
+  (() => {
+    const box = document.querySelector('.planner'); if (!box) return;
+    const st = {ev:'club', h:'noche', e:'subir'};
+    const $ = id => document.getElementById(id);
+    const LBL = {ev:{club:'club o sala',rave:'rave u open air',beach:'terraza o beach club',colectivo:'fiesta de colectivo',privado:'evento privado'}, h:{tarde:'tarde (17–22 h)',noche:'noche (22–02 h)',madrugada:'madrugada (02–06 h)',toda:'de principio a fin'}, e:{groove:'groove, bailar sin prisa',subir:'ir a más',tope:'a tope'}};
+    const pick = () => {
+      if (st.h === 'toda') return 'both';
+      let gx = 0;
+      if (st.e === 'tope') gx += 2; if (st.e === 'groove') gx -= 2;
+      if (st.h === 'madrugada') gx += 1; if (st.h === 'tarde') gx -= 2;
+      if (st.ev === 'rave') gx += 1; if (st.ev === 'beach') gx -= 2;
+      return gx >= 1 ? 'gx' : 'mg';
+    };
+    const render = () => {
+      const p = pick(), r = {};
+      if (p === 'mg') {
+        r.name = 'Martín Gala'; r.img = st.ev === 'beach' || st.h === 'tarde' ? 'vinilo-laritmica' : 'retrato-vinilo';
+        r.bpm = st.e === 'groove' ? '122–126' : st.e === 'tope' ? '130–135' : '126–132';
+        r.sound = st.e === 'groove' ? 'House y groove' : st.e === 'tope' ? 'Techno con groove' : 'Groove que va a techno';
+        r.fmt = st.ev === 'beach' || st.h === 'tarde' ? 'Vinyl set' : st.ev === 'colectivo' ? 'Vinyl set o b2b' : 'Vinilo y digital';
+        r.ref = st.ev === 'beach' || st.h === 'tarde' ? 'Calablava Beach Club · La Rítmica' : st.ev === 'colectivo' ? 'Orange Juice · SSN en 33/45' : 'Killing Time · 33/45 · Tulum';
+      } else if (p === 'gx') {
+        r.name = 'Galaxet'; r.img = st.ev === 'rave' ? 'galaxet-amagatall' : 'galaxet-pista';
+        r.bpm = st.e === 'tope' ? '150–170' : '145–150';
+        r.sound = st.e === 'tope' ? 'Tekno y psytek' : 'Psytrance que va a más';
+        r.fmt = 'Set digital';
+        r.ref = st.ev === 'rave' ? 'Amagatall d’Hilari · Spartan Rave' : 'Tulum con ALPO · Funky Food';
+      } else {
+        r.name = 'Los dos'; r.img = 'retrato-cables';
+        r.bpm = '125 → 165'; r.sound = 'Abre con groove, cierra con psytek';
+        r.fmt = 'Martín Gala → Galaxet'; r.ref = 'Trip to Freedom, julio 2026: un día de cada';
+      }
+      r.dur = p === 'both' ? '4 horas o más' : st.h === 'tarde' ? '3 horas' : '2 horas';
+      $('plName').textContent = r.name; $('plBpm').textContent = r.bpm; $('plSound').textContent = r.sound;
+      $('plFmt').textContent = r.fmt; $('plDur').textContent = r.dur; $('plRef').textContent = r.ref;
+      $('plR').classList.toggle('gx', p === 'gx');
+      const img = $('plImg'), src = '' + r.img + '.webp';
+      if (!img.getAttribute('src').endsWith(r.img + '.webp')) { img.classList.add('swap'); setTimeout(() => { img.src = src; img.alt = r.name; img.onload = () => img.classList.remove('swap'); }, 200); }
+      const subj = 'Booking ' + r.name + ' · ' + LBL.ev[st.ev];
+      const body = 'Hola,\n\nQueremos contar con ' + (p === 'both' ? 'Martín Gala y Galaxet' : r.name) + ' para nuestro evento.\n\nTipo de evento: ' + LBL.ev[st.ev] + '\nHorario: ' + LBL.h[st.h] + '\nEnergía: ' + LBL.e[st.e] + '\nFormato: ' + r.fmt + ' (' + r.bpm + ' BPM)\n\nFecha:\nCiudad y sala:\n\nGracias.';
+      $('plMail').href = 'mailto:info@btzagency.com?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(body);
+    };
+    box.querySelectorAll('.pl-g').forEach(g => g.addEventListener('click', e => {
+      const b = e.target.closest('button'); if (!b) return;
+      st[g.dataset.k] = b.dataset.v;
+      g.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
+      render();
+    }));
+    render();
   })();
 })();
 </script>
